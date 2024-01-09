@@ -1,0 +1,21 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified"
+           xmlns:tns="http://www.example.com"
+           targetNamespace="http://www.example.com">
+
+    <xs:element name="prescriptions" type="tns:Prescriptions"/>
+    <xs:complexType name="Prescriptions">
+        <xs:sequence>
+            <xs:element name="prescription" type="tns:Prescription" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Prescription">
+        <xs:sequence>
+            <xs:element name="prescription_id" type="xs:int"/>
+            <xs:element name="medication_name" type="xs:string"/>
+            <xs:element name="prescription_date" type="xs:date"/>
+            <xs:element name="appt_id" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

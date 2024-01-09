@@ -1,0 +1,20 @@
+<prescriptions>
+    <prescription>
+        <prescription_id>1</prescription_id>
+        <medication_name>Aspirin</medication_name>
+        <prescription_date>2024-01-03</prescription_date>
+        <appt_id>1</appt_id>
+    </prescription>
+    <prescription>
+        <prescription_id>2</prescription_id>
+        <medication_name>Doxycycline</medication_name>
+        <prescription_date>2024-01-08</prescription_date>
+        <appt_id>12</appt_id>
+    </prescription>
+    <prescription>
+        <prescription_id>5</prescription_id>
+        <medication_name>Lamotrigine</medication_name>
+        <prescription_date>2024-01-08</prescription_date>
+        <appt_id>14</appt_id>
+    </prescription>
+</prescriptions>
