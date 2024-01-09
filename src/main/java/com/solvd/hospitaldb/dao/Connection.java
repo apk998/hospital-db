@@ -1,3 +1,5 @@
+/*
+
 package com.solvd.hospitaldb.dao;
 
 public class Connection {
@@ -11,3 +13,5 @@ public class Connection {
         this.name = name;
     }
 }
+
+ */
