@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.hospitaldb.dao.DoctorRepository">
+    <insert id="create" useGeneratedKeys="true" keyProperty="doctorID">
+        insert into doctors (first_name, last_name, department_name, contact_number)
+        values (#{firstName}, #{lastName}, #{deptName}, #{contactNumber})
+    </insert>
+
+    <select id="findByID" resultMap="DoctorResultMap">
+        select * from doctors where doctor_id = #{doctorID}
+    </select>
+
+    <update id="updateByID">
+        update doctors set first_name = #{firstName}, last_name = #{lastName}, department_name = #{deptName}, contact_number = #{contactNumber}
+        where doctor_id = #{doctorID}
+    </update>
+
+    <delete id="deleteByID">
+        delete from doctors where doctor_id = #{doctorID}
+    </delete>
+
+    <resultMap id="DoctorResultMap" type="com.solvd.hospitaldb.bin.Doctor" autoMapping="false">
+        <id property="doctorID" column="doctor_id" />
+        <result property="firstName" column="first_name" />
+        <result property="lastName" column="last_name" />
+        <result property="contactNumber" column="contact_number" />
+        <association property="department" resultMap="" />
+    </resultMap>
+</mapper>

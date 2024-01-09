@@ -3,7 +3,7 @@ package com.solvd.hospitaldb.bin;
 import java.sql.Timestamp;
 
 public class Patient {
-    private int id;
+    private int patientID;
     private String firstName;
     private String lastName;
     private Timestamp dateOfBirth;
@@ -11,11 +11,11 @@ public class Patient {
     private long contactNumber;
 
     public int getId() {
-        return id;
+        return patientID;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int patientID) {
+        this.patientID = patientID;
     }
 
     public String getFirstName() {

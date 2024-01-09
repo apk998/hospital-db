@@ -4,7 +4,7 @@ public class Doctor {
     private int doctorID;
     private String firstName;
     private String lastName;
-    private String deptName;
+    private Department department;
     private long contactNumber;
 
     public int getDoctorID() {
@@ -31,12 +31,12 @@ public class Doctor {
         this.lastName = lastName;
     }
 
-    public String getDeptName() {
-        return deptName;
+    public Department getDepartment() {
+        return department;
     }
 
-    public void setDeptName(String deptName) {
-        this.deptName = deptName;
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
     public long getContactNumber() {
