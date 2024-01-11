@@ -8,7 +8,7 @@ public class Patient {
     private String lastName;
     private Timestamp dateOfBirth;
     private String gender;
-    private long contactNumber;
+    private String contactNumber;
 
     public int getId() {
         return patientID;
@@ -50,11 +50,11 @@ public class Patient {
         this.gender = gender;
     }
 
-    public long getContactNumber() {
+    public String getContactNumber() {
         return contactNumber;
     }
 
-    public void setContactNumber(long contactNumber) {
+    public void setContactNumber(String contactNumber) {
         this.contactNumber = contactNumber;
     }
 }

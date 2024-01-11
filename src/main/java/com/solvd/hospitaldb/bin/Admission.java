@@ -7,7 +7,7 @@ public class Admission {
     private int patientID;
     private Timestamp admitDate;
     private Timestamp dischargeDate;
-    private int bedNumber;
+    private int bedID;
 
     public int getAdmitNumber() {
         return admitNumber;
@@ -41,11 +41,11 @@ public class Admission {
         this.dischargeDate = dischargeDate;
     }
 
-    public int getBedNumber() {
-        return bedNumber;
+    public int getBedID() {
+        return bedID;
     }
 
-    public void setBedNumber(int bedNumber) {
-        this.bedNumber = bedNumber;
+    public void setBedID(int bedID) {
+        this.bedID = bedID;
     }
 }

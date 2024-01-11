@@ -1,7 +1,6 @@
 package com.solvd.hospitaldb.dao.impl;
 
 import com.solvd.hospitaldb.bin.Patient;
-import com.solvd.hospitaldb.bin.exception.ResourceNotFoundException;
 import com.solvd.hospitaldb.dao.Config;
 import com.solvd.hospitaldb.dao.PatientRepository;
 import org.apache.ibatis.session.SqlSession;

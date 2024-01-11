@@ -1,4 +1,4 @@
-package com.solvd.hospitaldb.bin.exception;
+package com.solvd.hospitaldb.exception;
 
 public class ResourceNotFoundException extends RuntimeException {
     public ResourceNotFoundException(String message) {

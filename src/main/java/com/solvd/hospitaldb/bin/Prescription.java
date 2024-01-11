@@ -12,7 +12,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(propOrder = {"prescriptionId", "medicationName", "prescriptionDate", "apptId"})
 public class Prescription {
     private int prescriptionId;
-    private String medicationName;
+    private int medicationID;
     private Timestamp prescriptionDate;
     private int apptId;
     private List<Prescription> prescriptionList;
@@ -27,12 +27,12 @@ public class Prescription {
     }
 
     @XmlElement(name = "medication_name")
-    public String getMedicationName() {
-        return medicationName;
+    public int getMedicationID() {
+        return medicationID;
     }
 
-    public void setMedicationName(String medicationName) {
-        this.medicationName = medicationName;
+    public void setMedicationID(int medicationID) {
+        this.medicationID = medicationID;
     }
 
     @XmlElement(name = "prescription_date")

@@ -1,9 +1,18 @@
 package com.solvd.hospitaldb.bin;
 
 public class InsuranceProvider {
+    private int providerID;
     private String providerName;
-    private long contactNumber;
+    private String contactNumber;
     private String address;
+
+    public int getProviderID() {
+        return providerID;
+    }
+
+    public void setProviderID(int providerID) {
+        this.providerID = providerID;
+    }
 
     public String getProviderName() {
         return providerName;
@@ -13,11 +22,11 @@ public class InsuranceProvider {
         this.providerName = providerName;
     }
 
-    public long getContactNumber() {
+    public String getContactNumber() {
         return contactNumber;
     }
 
-    public void setContactNumber(long contactNumber) {
+    public void setContactNumber(String contactNumber) {
         this.contactNumber = contactNumber;
     }
 

@@ -3,9 +3,18 @@ package com.solvd.hospitaldb.bin;
 import java.util.List;
 
 public class Department {
+    private int deptID;
     private String deptName;
     private String deptWing;
     private List<Doctor> doctors;
+
+    public int getDeptID() {
+        return deptID;
+    }
+
+    public void setDeptID(int deptID) {
+        this.deptID = deptID;
+    }
 
     public String getDeptName() {
         return deptName;
