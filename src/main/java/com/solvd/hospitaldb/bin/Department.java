@@ -44,4 +44,14 @@ public class Department {
     public void setDeptWing(String deptWing) {
         this.deptWing = deptWing;
     }
+
+    @Override
+    public String toString() {
+        return "Department{" +
+                "id=" + id +
+                ", deptID=" + deptID +
+                ", deptName='" + deptName + '\'' +
+                ", deptWing='" + deptWing + '\'' +
+                '}';
+    }
 }

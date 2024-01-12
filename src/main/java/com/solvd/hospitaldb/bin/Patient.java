@@ -74,4 +74,17 @@ public class Patient {
     public void setContactNumber(String contactNumber) {
         this.contactNumber = contactNumber;
     }
+
+    @Override
+    public String toString() {
+        return "Patient{" +
+                "id=" + id +
+                ", patientID=" + patientID +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", dateOfBirth='" + dateOfBirth + '\'' +
+                ", gender='" + gender + '\'' +
+                ", contactNumber='" + contactNumber + '\'' +
+                '}';
+    }
 }

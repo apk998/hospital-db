@@ -64,4 +64,16 @@ public class Doctor {
     public void setContactNumber(String contactNumber) {
         this.contactNumber = contactNumber;
     }
+
+    @Override
+    public String toString() {
+        return "Doctor{" +
+                "id=" + id +
+                ", doctorID=" + doctorID +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", department=" + department +
+                ", contactNumber='" + contactNumber + '\'' +
+                '}';
+    }
 }
