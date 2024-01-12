@@ -1,9 +1,18 @@
 package com.solvd.hospitaldb.bin;
 
 public class Bed {
+    private int id;
     private int bedID;
     private int wardNumber;
     private boolean availability;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getBedID() {
         return bedID;

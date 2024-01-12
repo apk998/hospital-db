@@ -1,11 +1,20 @@
 package com.solvd.hospitaldb.bin;
 
 public class Doctor {
+    private int id;
     private int doctorID;
     private String firstName;
     private String lastName;
     private Department department;
     private String contactNumber;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getDoctorID() {
         return doctorID;

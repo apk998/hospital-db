@@ -1,13 +1,21 @@
 package com.solvd.hospitaldb.bin;
 
 import java.math.BigDecimal;
-import java.sql.Timestamp;
 
 public class Payment {
+    private int id;
     private int paymentID;
     private int patientID;
     private BigDecimal amount;
-    private Timestamp paymentDate;
+    private String paymentDate;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getPaymentID() {
         return paymentID;
@@ -33,11 +41,11 @@ public class Payment {
         this.amount = amount;
     }
 
-    public Timestamp getPaymentDate() {
+    public String getPaymentDate() {
         return paymentDate;
     }
 
-    public void setPaymentDate(Timestamp paymentDate) {
+    public void setPaymentDate(String paymentDate) {
         this.paymentDate = paymentDate;
     }
 }

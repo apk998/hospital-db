@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.solvd.hospitaldb.dao.DepartmentRepository">
+<mapper namespace="com.solvd.hospitaldb.dao.DepartmentDAO">
     <insert id="create">
         insert into departments (department_name, department_wing)
         values (#{deptName}, #{deptWing})
@@ -24,6 +24,6 @@
         <id property="deptName" column="department_name" />
         <result property="deptWing" column="department_wing" />
         <collection property="doctors"
-                    resultMap="com.solvd.hospitaldb.dao.DoctorRepository"/>
+                    resultMap="com.solvd.hospitaldb.dao.DoctorDAO"/>
     </resultMap>
 </mapper>

@@ -1,12 +1,18 @@
 package com.solvd.hospitaldb.bin;
 
-import java.util.List;
-
 public class Department {
+    private int id;
     private int deptID;
     private String deptName;
     private String deptWing;
-    private List<Doctor> doctors;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getDeptID() {
         return deptID;
@@ -30,13 +36,5 @@ public class Department {
 
     public void setDeptWing(String deptWing) {
         this.deptWing = deptWing;
-    }
-
-    public List<Doctor> getDoctors() {
-        return doctors;
-    }
-
-    public void setDoctors(List<Doctor> doctors) {
-        this.doctors = doctors;
     }
 }

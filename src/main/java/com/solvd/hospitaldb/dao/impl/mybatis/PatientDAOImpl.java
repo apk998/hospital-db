@@ -1,18 +1,18 @@
-package com.solvd.hospitaldb.dao.impl;
+package com.solvd.hospitaldb.dao.impl.mybatis;
 
 import com.solvd.hospitaldb.bin.Patient;
-import com.solvd.hospitaldb.dao.Config;
-import com.solvd.hospitaldb.dao.PatientRepository;
+import com.solvd.hospitaldb.util.Config;
+import com.solvd.hospitaldb.dao.PatientDAO;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.Optional;
 
-public class PatientRepositoryImpl implements PatientRepository {
+public class PatientDAOImpl implements PatientDAO {
 
     @Override
     public void create(Patient patient) {
         try (SqlSession sqlSession = Config.getSessionFactory().openSession(true)) {
-            PatientRepository patientRepository = sqlSession.getMapper(PatientRepository.class);
+            PatientDAO patientRepository = sqlSession.getMapper(PatientDAO.class);
             patientRepository.create(patient);
         }
     }
@@ -20,7 +20,7 @@ public class PatientRepositoryImpl implements PatientRepository {
     @Override
     public Optional<Patient> findByID(int patientID) {
         try (SqlSession sqlSession = Config.getSessionFactory().openSession(true)) {
-            PatientRepository patientRepository = sqlSession.getMapper(PatientRepository.class);
+            PatientDAO patientRepository = sqlSession.getMapper(PatientDAO.class);
             return patientRepository.findByID(7); // for example
         }
     }

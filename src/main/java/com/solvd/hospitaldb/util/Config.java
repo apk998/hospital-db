@@ -1,4 +1,4 @@
-package com.solvd.hospitaldb.dao;
+package com.solvd.hospitaldb.util;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactory;

@@ -1,20 +1,37 @@
 package com.solvd.hospitaldb.bin;
 
-import java.sql.Timestamp;
-
 public class Patient {
+    private int id;
     private int patientID;
     private String firstName;
     private String lastName;
-    private Timestamp dateOfBirth;
+    private String dateOfBirth;
     private String gender;
     private String contactNumber;
 
+    public Patient(int id, int patientID, String firstName, String lastName, String dateOfBirth, String gender, String contactNumber) {
+        this.id = id;
+        this.patientID = patientID;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dateOfBirth = dateOfBirth;
+        this.gender = gender;
+        this.contactNumber = contactNumber;
+    }
+
     public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getPatientId() {
         return patientID;
     }
 
-    public void setId(int patientID) {
+    public void setPatientId(int patientID) {
         this.patientID = patientID;
     }
 
@@ -34,11 +51,11 @@ public class Patient {
         this.lastName = lastName;
     }
 
-    public Timestamp getDateOfBirth() {
+    public String getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(Timestamp dateOfBirth) {
+    public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 

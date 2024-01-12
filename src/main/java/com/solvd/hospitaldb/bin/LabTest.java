@@ -1,9 +1,18 @@
 package com.solvd.hospitaldb.bin;
 
 public class LabTest {
+    private int id;
     private int testID;
     private String testName;
     private String testDescription;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getTestID() {
         return testID;

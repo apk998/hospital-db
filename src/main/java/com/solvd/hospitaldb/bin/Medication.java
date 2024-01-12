@@ -1,17 +1,17 @@
 package com.solvd.hospitaldb.bin;
 
 public class Medication {
-    private int medicationID;
+    private int id;
     private String medicationName;
     private String dosage;
     private String usageInstructions;
 
-    public int getMedicationID() {
-        return medicationID;
+    public int getId() {
+        return id;
     }
 
-    public void setMedicationID(int medicationID) {
-        this.medicationID = medicationID;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getMedicationName() {

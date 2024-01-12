@@ -1,13 +1,20 @@
 package com.solvd.hospitaldb.bin;
 
-import java.sql.Timestamp;
-
 public class Admission {
+    private int id;
     private int admitNumber;
     private int patientID;
-    private Timestamp admitDate;
-    private Timestamp dischargeDate;
+    private String admitDate;
+    private String dischargeDate;
     private int bedID;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getAdmitNumber() {
         return admitNumber;
@@ -25,19 +32,19 @@ public class Admission {
         this.patientID = patientID;
     }
 
-    public Timestamp getAdmitDate() {
+    public String getAdmitDate() {
         return admitDate;
     }
 
-    public void setAdmitDate(Timestamp admitDate) {
+    public void setAdmitDate(String admitDate) {
         this.admitDate = admitDate;
     }
 
-    public Timestamp getDischargeDate() {
+    public String getDischargeDate() {
         return dischargeDate;
     }
 
-    public void setDischargeDate(Timestamp dischargeDate) {
+    public void setDischargeDate(String dischargeDate) {
         this.dischargeDate = dischargeDate;
     }
 

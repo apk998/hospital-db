@@ -1,12 +1,19 @@
 package com.solvd.hospitaldb.bin;
 
-import java.sql.Timestamp;
-
 public class Surgery {
+    private int id;
     private int surgeryID;
     private String surgeryName;
-    private Timestamp surgeryDate;
+    private String surgeryDate;
     private int apptID;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getSurgeryID() {
         return surgeryID;
@@ -24,11 +31,11 @@ public class Surgery {
         this.surgeryName = surgeryName;
     }
 
-    public Timestamp getSurgeryDate() {
+    public String getSurgeryDate() {
         return surgeryDate;
     }
 
-    public void setSurgeryDate(Timestamp surgeryDate) {
+    public void setSurgeryDate(String surgeryDate) {
         this.surgeryDate = surgeryDate;
     }
 

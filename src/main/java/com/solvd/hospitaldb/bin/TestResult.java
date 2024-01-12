@@ -1,13 +1,20 @@
 package com.solvd.hospitaldb.bin;
 
-import java.sql.Timestamp;
-
 public class TestResult {
+    private int id;
     private int resultID;
     private int patientID;
     private int testID;
     private String resultDetails;
-    private Timestamp testDate;
+    private String testDate;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getResultID() {
         return resultID;
@@ -41,11 +48,11 @@ public class TestResult {
         this.resultDetails = resultDetails;
     }
 
-    public Timestamp getTestDate() {
+    public String getTestDate() {
         return testDate;
     }
 
-    public void setTestDate(Timestamp testDate) {
+    public void setTestDate(String testDate) {
         this.testDate = testDate;
     }
 }

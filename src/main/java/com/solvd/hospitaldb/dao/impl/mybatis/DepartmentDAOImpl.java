@@ -1,18 +1,18 @@
-package com.solvd.hospitaldb.dao.impl;
+package com.solvd.hospitaldb.dao.impl.mybatis;
 
 import com.solvd.hospitaldb.bin.Department;
-import com.solvd.hospitaldb.dao.Config;
-import com.solvd.hospitaldb.dao.DepartmentRepository;
+import com.solvd.hospitaldb.dao.DepartmentDAO;
+import com.solvd.hospitaldb.util.Config;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.Optional;
 
-public class DepartmentRepositoryImpl implements DepartmentRepository {
+public class DepartmentDAOImpl implements DepartmentDAO {
 
     @Override
     public void create(Department department) {
         try (SqlSession sqlSession = Config.getSessionFactory().openSession(true)) {
-            DepartmentRepository departmentRepository = sqlSession.getMapper(DepartmentRepository.class);
+            DepartmentDAO departmentRepository = sqlSession.getMapper(DepartmentDAO.class);
             departmentRepository.create(department);
         }
     }
@@ -20,7 +20,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
     @Override
     public Optional<Department> findByName(String deptName) {
         try (SqlSession sqlSession = Config.getSessionFactory().openSession(true)) {
-            DepartmentRepository departmentRepository = sqlSession.getMapper(DepartmentRepository.class);
+            DepartmentDAO departmentRepository = sqlSession.getMapper(DepartmentDAO.class);
             return departmentRepository.findByName("Cardiology"); // for example
         }
     }

@@ -1,17 +1,17 @@
 package com.solvd.hospitaldb.bin;
 
 public class InsurancePolicy {
-    private int policyID;
+    private int id;
     private String policyName;
     private int patientID;
     private int providerID;
     private String coverageDetails;
 
-    public int getPolicyID() {
-        return policyID;
+    public int getId() {
+        return id;
     }
-    public void setPolicyID(int policyID) {
-        this.policyID = policyID;
+    public void setId(int id) {
+        this.id = id;
     }
     public String getPolicyName() {
         return policyName;
