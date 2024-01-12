@@ -44,7 +44,7 @@ public class PatientDAOImpl implements PatientDAO {
 
         if (rs.next()) {
             int id1 = rs.getInt("id");
-            int patientID = rs.getInt("patientID");
+            int patientID = rs.getInt("patient_id");
             String firstName = rs.getString("first_name");
             String lastName = rs.getString("last_name");
             String dateOfBirth = rs.getString("date_of_birth");
@@ -53,7 +53,7 @@ public class PatientDAOImpl implements PatientDAO {
 
             patient = new Patient(id1, patientID, firstName, lastName, dateOfBirth, gender, contactNumber);
         }
-        return patient;
+        return Optional.ofNullable(patient);
     }
 
     @Override
