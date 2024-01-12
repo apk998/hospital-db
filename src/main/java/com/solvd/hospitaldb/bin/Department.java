@@ -6,6 +6,13 @@ public class Department {
     private String deptName;
     private String deptWing;
 
+    public Department(int id, int deptID, String deptName, String deptWing) {
+        this.id = id;
+        this.deptID = deptID;
+        this.deptName = deptName;
+        this.deptWing = deptWing;
+    }
+
     public int getId() {
         return id;
     }

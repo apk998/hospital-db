@@ -4,34 +4,41 @@ import com.solvd.hospitaldb.bin.Department;
 import com.solvd.hospitaldb.dao.DepartmentDAO;
 import com.solvd.hospitaldb.util.Config;
 import org.apache.ibatis.session.SqlSession;
+import java.sql.SQLException;
 
 import java.util.Optional;
 
 public class DepartmentDAOImpl implements DepartmentDAO {
 
     @Override
-    public void create(Department department) {
+    public int create(Department department) throws SQLException {
         try (SqlSession sqlSession = Config.getSessionFactory().openSession(true)) {
-            DepartmentDAO departmentRepository = sqlSession.getMapper(DepartmentDAO.class);
-            departmentRepository.create(department);
+            DepartmentDAO departmentDAO = sqlSession.getMapper(DepartmentDAO.class);
+            return departmentDAO.create(department);
         }
     }
 
     @Override
-    public Optional<Department> findByName(String deptName) {
+    public Optional<Department> findByID(int id) throws SQLException {
         try (SqlSession sqlSession = Config.getSessionFactory().openSession(true)) {
-            DepartmentDAO departmentRepository = sqlSession.getMapper(DepartmentDAO.class);
-            return departmentRepository.findByName("Cardiology"); // for example
+            DepartmentDAO departmentDAO = sqlSession.getMapper(DepartmentDAO.class);
+            return departmentDAO.findByID(id);
         }
     }
 
     @Override
-    public void updateByName(String deptName) {
-
+    public int updateByID(Department department, int id) throws SQLException {
+        try (SqlSession sqlSession = Config.getSessionFactory().openSession(true)) {
+            DepartmentDAO departmentDAO = sqlSession.getMapper(DepartmentDAO.class);
+            return departmentDAO.updateByID(department, id);
+        }
     }
 
     @Override
-    public void deleteByName(String deptName) {
-
+    public int deleteByID(Department department) throws SQLException {
+        try (SqlSession sqlSession = Config.getSessionFactory().openSession(true)) {
+            DepartmentDAO departmentDAO = sqlSession.getMapper(DepartmentDAO.class);
+            return departmentDAO.deleteByID(department);
+        }
     }
 }

@@ -2,26 +2,32 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.solvd.hospitaldb.dao.DoctorDAO">
-    <insert id="create" useGeneratedKeys="true" keyProperty="doctorID">
+    <insert id="create" useGeneratedKeys="true" keyProperty="id">
         insert into doctors (first_name, last_name, department_name, contact_number)
         values (#{firstName}, #{lastName}, #{deptName}, #{contactNumber})
     </insert>
 
     <select id="findByID" resultMap="DoctorResultMap">
-        select * from doctors where doctor_id = #{doctorID}
+        select * from doctors where id = #{id}
     </select>
 
     <update id="updateByID">
-        update doctors set first_name = #{firstName}, last_name = #{lastName}, department_name = #{deptName}, contact_number = #{contactNumber}
-        where doctor_id = #{doctorID}
+        update doctors set
+        doctor_id = #{doctor.doctorID},
+        first_name = #{doctor.firstName},
+        last_name = #{doctor.lastName},
+        department_name = #{doctor.deptName},
+        contact_number = #{doctor.contactNumber}
+        where id = #{id}
     </update>
 
     <delete id="deleteByID">
-        delete from doctors where doctor_id = #{doctorID}
+        delete from doctors where id = #{id}
     </delete>
 
     <resultMap id="DoctorResultMap" type="com.solvd.hospitaldb.bin.Doctor" autoMapping="false">
-        <id property="doctorID" column="doctor_id" />
+        <id property="id" column="id" />
+        <result property="doctorID" column="doctor_id"/>
         <result property="firstName" column="first_name" />
         <result property="lastName" column="last_name" />
         <result property="contactNumber" column="contact_number" />

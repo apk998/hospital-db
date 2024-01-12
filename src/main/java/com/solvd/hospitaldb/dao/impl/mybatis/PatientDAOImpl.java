@@ -14,7 +14,7 @@ public class PatientDAOImpl implements PatientDAO {
     public int create(Patient patient) throws SQLException {
         try (SqlSession sqlSession = Config.getSessionFactory().openSession(true)) {
             PatientDAO patientDAO = sqlSession.getMapper(PatientDAO.class);
-            patientDAO.create(patient);
+            return patientDAO.create(patient);
         }
     }
 
@@ -22,17 +22,23 @@ public class PatientDAOImpl implements PatientDAO {
     public Optional<Patient> findByID(int id) throws SQLException {
         try (SqlSession sqlSession = Config.getSessionFactory().openSession(true)) {
             PatientDAO patientDAO = sqlSession.getMapper(PatientDAO.class);
-            return patientDAO.findByID(0);
+            return patientDAO.findByID(id);
         }
     }
 
     @Override
     public int updateByID(Patient patient, int id) throws SQLException {
-
+        try (SqlSession sqlSession = Config.getSessionFactory().openSession(true)) {
+            PatientDAO patientDAO = sqlSession.getMapper(PatientDAO.class);
+            return patientDAO.updateByID(patient, id);
+        }
     }
 
     @Override
     public int deleteByID(Patient patient) throws SQLException {
-
+        try (SqlSession sqlSession = Config.getSessionFactory().openSession(true)) {
+            PatientDAO patientDAO = sqlSession.getMapper(PatientDAO.class);
+            return patientDAO.deleteByID(patient);
+        }
     }
 }

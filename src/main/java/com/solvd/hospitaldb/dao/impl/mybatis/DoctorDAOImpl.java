@@ -14,21 +14,31 @@ public class DoctorDAOImpl implements DoctorDAO {
     public int create(Doctor doctor) throws SQLException {
         try (SqlSession sqlSession = Config.getSessionFactory().openSession(true)) {
             DoctorDAO doctorRepository = sqlSession.getMapper(DoctorDAO.class);
-            doctorRepository.create(doctor);
+            return doctorRepository.create(doctor);
+        }
     }
 
-    public Optional<Doctor> findByID(int doctorID) {
+    @Override
+    public Optional<Doctor> findByID(int id) throws SQLException {
         try (SqlSession sqlSession = Config.getSessionFactory().openSession(true)) {
-            DoctorDAO doctorRepository = sqlSession.getMapper(DoctorDAO.class);
-            return doctorDAO.findByID(2); // for example
+            DoctorDAO doctorDAO = sqlSession.getMapper(DoctorDAO.class);
+            return doctorDAO.findByID(id);
         }
     }
 
-    public int updateByID(Doctor doctor, int id) {
-
+    @Override
+    public int updateByID(Doctor doctor, int id) throws SQLException {
+        try (SqlSession sqlSession = Config.getSessionFactory().openSession(true)) {
+            DoctorDAO doctorDAO = sqlSession.getMapper(DoctorDAO.class);
+            return doctorDAO.updateByID(doctor, id);
         }
+    }
 
-    public int deleteByID(Doctor doctor) {
-
+    @Override
+    public int deleteByID(Doctor doctor) throws SQLException {
+        try (SqlSession sqlSession = Config.getSessionFactory().openSession(true)) {
+            DoctorDAO doctorDAO = sqlSession.getMapper(DoctorDAO.class);
+            return doctorDAO.deleteByID(doctor);
         }
+    }
 }

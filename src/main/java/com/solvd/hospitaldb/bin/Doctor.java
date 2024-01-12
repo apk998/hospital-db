@@ -8,6 +8,15 @@ public class Doctor {
     private Department department;
     private String contactNumber;
 
+    public Doctor(int id, int doctorID, String firstName, String lastName, Department department, String contactNumber) {
+        this.id = id;
+        this.doctorID = doctorID;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.department = department;
+        this.contactNumber = contactNumber;
+    }
+
     public int getId() {
         return id;
     }

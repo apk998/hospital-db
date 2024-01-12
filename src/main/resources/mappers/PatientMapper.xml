@@ -2,26 +2,33 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.solvd.hospitaldb.dao.PatientDAO">
-    <insert id="create" useGeneratedKeys="true" keyProperty="patientID">
+    <insert id="create" useGeneratedKeys="true" keyProperty="id">
         insert into patients (patient_id, first_name, last_name, date_of_birth, gender, contact_number)
         values (#{patientID}, #{firstName}, #{lastName}, #{dateOfBirth}, #{gender}, #{contactNumber})
     </insert>
 
     <select id="findByID" resultMap="PatientResultMap">
-        select * from patients where patient_id = #{patientID}
+        select * from patients where id = #{id}
     </select>
 
     <update id="updateByID">
-        update patients set first_name = #{patient.firstName}, last_name = #{patient.lastName}, date_of_birth = #{patient.dateOfBirth}, gender = #{patient.gender}, contact_number = #{patient.contactNumber}
-        where patient_id = #{patientID}
+        update patients set
+        patient_id = #{patient.patientID},
+        first_name = #{patient.firstName},
+        last_name = #{patient.lastName},
+        date_of_birth = #{patient.dateOfBirth},
+        gender = #{patient.gender},
+        contact_number = #{patient.contactNumber}
+        where id = #{id}
     </update>
 
     <delete id="deleteByID">
-        delete from patients where patient_id = #{patientID}
+        delete from patients where id = #{id}
     </delete>
 
     <resultMap id="PatientResultMap" type="com.solvd.hospitaldb.bin.Patient" autoMapping="false">
-        <id property="patientID" column="patient_id" />
+        <id property="id" column="id" />
+        <result property="patientID" column="patient_id"/>
         <result property="firstName" column="first_name" />
         <result property="lastName" column="last_name" />
         <result property="dateOfBirth" column="date_of_birth" />

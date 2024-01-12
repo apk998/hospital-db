@@ -51,7 +51,7 @@ public class DoctorDAOImpl implements DoctorDAO {
             Department department = rs.getString("department_id");
             String contactNumber = rs.getString("contact_number");
 
-            doctor = new Patient(id1, doctorID, firstName, lastName, department, contactNumber);
+            doctor = new Doctor(id1, doctorID, firstName, lastName, department, contactNumber);
         }
         return Optional.ofNullable(doctor);
     }
