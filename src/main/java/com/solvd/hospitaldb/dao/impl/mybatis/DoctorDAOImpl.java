@@ -4,13 +4,14 @@ import com.solvd.hospitaldb.bin.Doctor;
 import com.solvd.hospitaldb.dao.DoctorDAO;
 import com.solvd.hospitaldb.util.Config;
 import org.apache.ibatis.session.SqlSession;
+import java.sql.SQLException;
 
 import java.util.Optional;
 
 public class DoctorDAOImpl implements DoctorDAO {
 
     @Override
-    public void create(Doctor doctor) {
+    public int create(Doctor doctor) throws SQLException {
         try (SqlSession sqlSession = Config.getSessionFactory().openSession(true)) {
             DoctorDAO doctorRepository = sqlSession.getMapper(DoctorDAO.class);
             doctorRepository.create(doctor);
@@ -23,11 +24,11 @@ public class DoctorDAOImpl implements DoctorDAO {
         }
     }
 
-    public void updateByID(Doctor doctor, int doctorID) {
+    public int updateByID(Doctor doctor, int id) {
 
         }
 
-    public void deleteByID(int doctorID) {
+    public int deleteByID(Doctor doctor) {
 
         }
 }

@@ -4,34 +4,35 @@ import com.solvd.hospitaldb.bin.Patient;
 import com.solvd.hospitaldb.util.Config;
 import com.solvd.hospitaldb.dao.PatientDAO;
 import org.apache.ibatis.session.SqlSession;
+import java.sql.SQLException;
 
 import java.util.Optional;
 
 public class PatientDAOImpl implements PatientDAO {
 
     @Override
-    public void create(Patient patient) {
+    public int create(Patient patient) throws SQLException {
         try (SqlSession sqlSession = Config.getSessionFactory().openSession(true)) {
-            PatientDAO patientRepository = sqlSession.getMapper(PatientDAO.class);
-            patientRepository.create(patient);
+            PatientDAO patientDAO = sqlSession.getMapper(PatientDAO.class);
+            patientDAO.create(patient);
         }
     }
 
     @Override
-    public Optional<Patient> findByID(int patientID) {
+    public Optional<Patient> findByID(int id) throws SQLException {
         try (SqlSession sqlSession = Config.getSessionFactory().openSession(true)) {
-            PatientDAO patientRepository = sqlSession.getMapper(PatientDAO.class);
-            return patientRepository.findByID(7); // for example
+            PatientDAO patientDAO = sqlSession.getMapper(PatientDAO.class);
+            return patientDAO.findByID(0);
         }
     }
 
     @Override
-    public void updateByID(Patient patient, int patientID) {
+    public int updateByID(Patient patient, int id) throws SQLException {
 
     }
 
     @Override
-    public void deleteByID(int patientID) {
+    public int deleteByID(Patient patient) throws SQLException {
 
     }
 }
