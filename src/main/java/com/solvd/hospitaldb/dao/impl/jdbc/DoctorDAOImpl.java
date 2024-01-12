@@ -2,7 +2,6 @@ package com.solvd.hospitaldb.dao.impl.jdbc;
 
 import com.solvd.hospitaldb.bin.Department;
 import com.solvd.hospitaldb.bin.Doctor;
-import com.solvd.hospitaldb.bin.Patient;
 import com.solvd.hospitaldb.util.Database;
 import com.solvd.hospitaldb.dao.DoctorDAO;
 
@@ -48,7 +47,10 @@ public class DoctorDAOImpl implements DoctorDAO {
             int doctorID = rs.getInt("doctor_id");
             String firstName = rs.getString("first_name");
             String lastName = rs.getString("last_name");
-            Department department = rs.getString("department_id");
+
+            int departmentId = rs.getInt("department_id");
+            Department department = getDepartmentById(departmentId);
+
             String contactNumber = rs.getString("contact_number");
 
             doctor = new Doctor(id1, doctorID, firstName, lastName, department, contactNumber);
@@ -65,7 +67,7 @@ public class DoctorDAOImpl implements DoctorDAO {
         ps.setInt(1, doctor.getDoctorID());
         ps.setString(2, doctor.getFirstName());
         ps.setString(3, doctor.getLastName());
-        ps.setString(5, doctor.getDepartment());
+        ps.setString(5, String.valueOf(doctor.getDepartment()));
         ps.setString(6, doctor.getContactNumber());
         ps.setInt(7, doctor.getId());
 
