@@ -68,7 +68,7 @@ public class PatientDAOImpl implements PatientDAO {
         ps.setString(4, patient.getDateOfBirth());
         ps.setString(5, patient.getGender());
         ps.setString(6, patient.getContactNumber());
-        ps.setString(7, patient.getId());
+        ps.setInt(7, patient.getId());
 
         int result = ps.executeUpdate();
 
