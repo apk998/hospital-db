@@ -15,7 +15,7 @@ import java.util.Optional;
 public class DepartmentDAOImpl implements DepartmentDAO {
 
     private final ConnectionPool connectionPool = ConnectionPool.getInstance();
-    private static final Logger LOGGER= LogManager.getLogger(DepartmentDAOImpl.class);
+    private static final Logger LOGGER= LogManager.getLogger(com.solvd.hospitaldb.dao.impl.jdbc.DepartmentDAOImpl.class);
 
     @Override
     public void create(Department department) {

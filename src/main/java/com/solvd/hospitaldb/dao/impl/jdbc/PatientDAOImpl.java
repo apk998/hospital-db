@@ -15,7 +15,7 @@ import java.util.Optional;
 public class PatientDAOImpl implements PatientDAO {
 
     private final ConnectionPool connectionPool = ConnectionPool.getInstance();
-    private static final Logger LOGGER= LogManager.getLogger(PatientDAOImpl.class);
+    private static final Logger LOGGER= LogManager.getLogger(com.solvd.hospitaldb.dao.impl.jdbc.PatientDAOImpl.class);
 
     @Override
     public void create(Patient patient) throws {
