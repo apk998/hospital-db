@@ -7,11 +7,11 @@ import java.sql.SQLException;
 import java.util.Optional;
 
 public interface DoctorDAO extends BaseDAO<Doctor> {
-    int create(Doctor doctor) throws SQLException;
+    void create(Doctor doctor);
 
-    Optional<Doctor> findByID(int id) throws SQLException;
+    Optional<Doctor> findByID(int id);
 
-    int updateByID(@Param("doctor") Doctor doctor, @Param("id") int id) throws SQLException;
+    void updateByID(@Param("doctor") Doctor doctor, @Param("id") int id);
 
-    int deleteByID(Doctor doctor) throws SQLException;
+    void deleteByID(Doctor doctor);
 }
