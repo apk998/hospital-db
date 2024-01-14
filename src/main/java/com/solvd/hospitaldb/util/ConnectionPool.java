@@ -46,6 +46,7 @@ public class ConnectionPool {
                 Thread.currentThread().interrupt();
             }
         }
+        Connection connection = connections.remove(0);
         return connection;
     }
 

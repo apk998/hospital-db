@@ -1,16 +1,16 @@
 package com.solvd.hospitaldb.dao.impl.jdbc;
 
+import com.solvd.hospitaldb.bin.Department;
 import com.solvd.hospitaldb.bin.Doctor;
-import com.solvd.hospitaldb.util.ConnectionPool;
-import com.solvd.hospitaldb.util.Database;
 import com.solvd.hospitaldb.dao.DoctorDAO;
+import com.solvd.hospitaldb.util.ConnectionPool;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.sql.SQLException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Optional;
 
 public class DoctorDAOImpl implements DoctorDAO {
