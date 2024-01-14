@@ -18,7 +18,7 @@ public class PatientDAOImpl implements PatientDAO {
     private static final Logger LOGGER= LogManager.getLogger(com.solvd.hospitaldb.dao.impl.jdbc.PatientDAOImpl.class);
 
     @Override
-    public void create(Patient patient) throws {
+    public void create(Patient patient) {
         Connection connection = connectionPool.getConnection(1000);
         String sql = "INSERT INTO patients (patient_id, first_name, last_name, date_of_birth, gender, contact_number) VALUES (?, ?, ?, ?, ?, ?)";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
