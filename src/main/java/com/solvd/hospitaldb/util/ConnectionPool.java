@@ -14,7 +14,7 @@ public class ConnectionPool {
     private static final Logger LOGGER = LogManager.getLogger(ConnectionPool.class);
     private static ConnectionPool connectionPool = null;
     private final List<Connection> connections = new ArrayList<>();
-    private static final int MAX_CONNECTIONS = 10;
+    private static final int MAX_CONNECTIONS = 20;
 
     private ConnectionPool() {
         IntStream.range(0, MAX_CONNECTIONS).forEach(i -> {
@@ -37,7 +37,7 @@ public class ConnectionPool {
         return connectionPool;
     }
 
-    public synchronized Connection getConnection(long timeoutMillis) throws SQLException {
+    public synchronized Connection getConnection(long timeoutMillis) {
         long endTime = System.currentTimeMillis() + timeoutMillis;
         while (connections.isEmpty() && System.currentTimeMillis() < endTime) {
             try {
@@ -46,11 +46,6 @@ public class ConnectionPool {
                 Thread.currentThread().interrupt();
             }
         }
-        if (connections.isEmpty()) {
-            throw new SQLException("Connection timeout");
-        }
-        Connection connection = connections.remove(0);
-        LOGGER.info(Thread.currentThread().getName() + " acquired connection: " + connection.getClass());
         return connection;
     }
 
