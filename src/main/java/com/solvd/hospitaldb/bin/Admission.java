@@ -2,15 +2,15 @@ package com.solvd.hospitaldb.bin;
 
 public class Admission {
     private int id;
-    private int admitNumber;
+    private int admitID;
     private int patientID;
     private String admitDate;
     private String dischargeDate;
     private int bedID;
 
-    public Admission(int id, int admitNumber, int patientID, String admitDate, String dischargeDate, int bedID) {
+    public Admission(int id, int admitID, int patientID, String admitDate, String dischargeDate, int bedID) {
         this.id = id;
-        this.admitNumber = admitNumber;
+        this.admitID = admitID;
         this.patientID = patientID;
         this.admitDate = admitDate;
         this.dischargeDate = dischargeDate;
@@ -25,12 +25,12 @@ public class Admission {
         this.id = id;
     }
 
-    public int getAdmitNumber() {
-        return admitNumber;
+    public int getAdmitID() {
+        return admitID;
     }
 
-    public void setAdmitNumber(int admitNumber) {
-        this.admitNumber = admitNumber;
+    public void setAdmitID(int admitID) {
+        this.admitID = admitID;
     }
 
     public int getPatientID() {
@@ -69,7 +69,7 @@ public class Admission {
     public String toString() {
         return "Admission{" +
                 "id=" + id +
-                ", admitNumber=" + admitNumber +
+                ", admitNumber=" + admitID +
                 ", patientID=" + patientID +
                 ", admitDate='" + admitDate + '\'' +
                 ", dischargeDate='" + dischargeDate + '\'' +

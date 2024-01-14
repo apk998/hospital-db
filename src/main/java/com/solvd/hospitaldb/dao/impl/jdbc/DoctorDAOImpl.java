@@ -39,7 +39,7 @@ public class DoctorDAOImpl implements DoctorDAO {
     }
 
     @Override
-    public Optional<Doctor> findByID(int id) throws SQLException {
+    public Optional<Doctor> findByID(int id) {
         Connection connection = connectionPool.getConnection(1000);
         Doctor doctor = null;
         String sql = "SELECT id, doctor_id, first_name, last_name, department_id, contact_number FROM doctors WHERE id = ?";
@@ -79,9 +79,9 @@ public class DoctorDAOImpl implements DoctorDAO {
             ps.setInt(1, doctor.getDoctorID());
             ps.setString(2, doctor.getFirstName());
             ps.setString(3, doctor.getLastName());
-            ps.setString(5, String.valueOf(doctor.getDepartment()));
-            ps.setString(6, doctor.getContactNumber());
-            ps.setInt(7, doctor.getId());
+            ps.setString(4, String.valueOf(doctor.getDepartment()));
+            ps.setString(5, doctor.getContactNumber());
+            ps.setInt(6, doctor.getId());
             ps.executeUpdate();
 
         } catch (SQLException e) {
@@ -92,7 +92,7 @@ public class DoctorDAOImpl implements DoctorDAO {
     }
 
     @Override
-    public void deleteByID(Doctor doctor) throws SQLException {
+    public void deleteByID(Doctor doctor) {
         Connection connection = connectionPool.getConnection(1000);
         String sql = "DELETE FROM doctors WHERE id = ?";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {

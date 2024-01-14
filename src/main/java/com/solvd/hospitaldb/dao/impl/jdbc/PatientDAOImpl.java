@@ -102,7 +102,7 @@ public class PatientDAOImpl implements PatientDAO {
         } catch (SQLException e) {
             LOGGER.error("Error deleting patient", e);
         } finally {
-            connectionPool.closeConnection(connection);
+            connectionPool.releaseConnection(connection);
         }
     }
 }

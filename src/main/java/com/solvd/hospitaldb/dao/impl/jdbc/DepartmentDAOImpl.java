@@ -71,7 +71,7 @@ public class DepartmentDAOImpl implements DepartmentDAO {
             ps.setInt(1, department.getDeptID());
             ps.setString(2, department.getDeptName());
             ps.setString(3, department.getDeptWing());
-            ps.setInt(7, department.getId());
+            ps.setInt(4, department.getId());
             ps.executeUpdate();
 
         } catch (SQLException e) {
@@ -94,5 +94,6 @@ public class DepartmentDAOImpl implements DepartmentDAO {
             LOGGER.error("Error deleting department", e);
         } finally {
             connectionPool.releaseConnection(connection);
+        }
     }
 }
