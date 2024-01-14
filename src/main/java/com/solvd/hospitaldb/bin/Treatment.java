@@ -7,6 +7,14 @@ public class Treatment {
     private String treatmentDate;
     private int apptID;
 
+    public Treatment(int id, int treatmentID, String treatmentDescription, String treatmentDate, int apptID) {
+        this.id = id;
+        this.treatmentID = treatmentID;
+        this.treatmentDescription = treatmentDescription;
+        this.treatmentDate = treatmentDate;
+        this.apptID = apptID;
+    }
+
     public int getId() {
         return id;
     }
@@ -45,5 +53,16 @@ public class Treatment {
 
     public void setApptID(int apptID) {
         this.apptID = apptID;
+    }
+
+    @Override
+    public String toString() {
+        return "Treatment{" +
+                "id=" + id +
+                ", treatmentID=" + treatmentID +
+                ", treatmentDescription='" + treatmentDescription + '\'' +
+                ", treatmentDate='" + treatmentDate + '\'' +
+                ", apptID=" + apptID +
+                '}';
     }
 }

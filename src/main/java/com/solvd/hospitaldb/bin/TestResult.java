@@ -8,6 +8,15 @@ public class TestResult {
     private String resultDetails;
     private String testDate;
 
+    public TestResult(int id, int resultID, int patientID, int testID, String resultDetails, String testDate) {
+        this.id = id;
+        this.resultID = resultID;
+        this.patientID = patientID;
+        this.testID = testID;
+        this.resultDetails = resultDetails;
+        this.testDate = testDate;
+    }
+
     public int getId() {
         return id;
     }
@@ -54,5 +63,17 @@ public class TestResult {
 
     public void setTestDate(String testDate) {
         this.testDate = testDate;
+    }
+
+    @Override
+    public String toString() {
+        return "TestResult{" +
+                "id=" + id +
+                ", resultID=" + resultID +
+                ", patientID=" + patientID +
+                ", testID=" + testID +
+                ", resultDetails='" + resultDetails + '\'' +
+                ", testDate='" + testDate + '\'' +
+                '}';
     }
 }

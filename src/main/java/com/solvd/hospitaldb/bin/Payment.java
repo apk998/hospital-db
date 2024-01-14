@@ -9,6 +9,14 @@ public class Payment {
     private BigDecimal amount;
     private String paymentDate;
 
+    public Payment(int id, int paymentID, int patientID, BigDecimal amount, String paymentDate) {
+        this.id = id;
+        this.paymentID = paymentID;
+        this.patientID = patientID;
+        this.amount = amount;
+        this.paymentDate = paymentDate;
+    }
+
     public int getId() {
         return id;
     }
@@ -47,5 +55,16 @@ public class Payment {
 
     public void setPaymentDate(String paymentDate) {
         this.paymentDate = paymentDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Payment{" +
+                "id=" + id +
+                ", paymentID=" + paymentID +
+                ", patientID=" + patientID +
+                ", amount=" + amount +
+                ", paymentDate='" + paymentDate + '\'' +
+                '}';
     }
 }

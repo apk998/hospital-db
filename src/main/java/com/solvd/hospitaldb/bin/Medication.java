@@ -6,6 +6,13 @@ public class Medication {
     private String dosage;
     private String usageInstructions;
 
+    public Medication(int id, String medicationName, String dosage, String usageInstructions) {
+        this.id = id;
+        this.medicationName = medicationName;
+        this.dosage = dosage;
+        this.usageInstructions = usageInstructions;
+    }
+
     public int getId() {
         return id;
     }
@@ -36,5 +43,15 @@ public class Medication {
 
     public void setUsageInstructions(String usageInstructions) {
         this.usageInstructions = usageInstructions;
+    }
+
+    @Override
+    public String toString() {
+        return "Medication{" +
+                "id=" + id +
+                ", medicationName='" + medicationName + '\'' +
+                ", dosage='" + dosage + '\'' +
+                ", usageInstructions='" + usageInstructions + '\'' +
+                '}';
     }
 }

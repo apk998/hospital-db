@@ -6,6 +6,13 @@ public class InsuranceProvider {
     private String contactNumber;
     private String address;
 
+    public InsuranceProvider(int id, String providerName, String contactNumber, String address) {
+        this.id = id;
+        this.providerName = providerName;
+        this.contactNumber = contactNumber;
+        this.address = address;
+    }
+
     public int getId() {
         return id;
     }
@@ -36,5 +43,15 @@ public class InsuranceProvider {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    @Override
+    public String toString() {
+        return "InsuranceProvider{" +
+                "id=" + id +
+                ", providerName='" + providerName + '\'' +
+                ", contactNumber='" + contactNumber + '\'' +
+                ", address='" + address + '\'' +
+                '}';
     }
 }

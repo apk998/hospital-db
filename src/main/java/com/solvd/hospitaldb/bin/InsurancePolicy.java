@@ -7,6 +7,14 @@ public class InsurancePolicy {
     private int providerID;
     private String coverageDetails;
 
+    public InsurancePolicy(int id, String policyName, int patientID, int providerID, String coverageDetails) {
+        this.id = id;
+        this.policyName = policyName;
+        this.patientID = patientID;
+        this.providerID = providerID;
+        this.coverageDetails = coverageDetails;
+    }
+
     public int getId() {
         return id;
     }
@@ -41,5 +49,16 @@ public class InsurancePolicy {
 
     public void setCoverageDetails(String coverageDetails) {
         this.coverageDetails = coverageDetails;
+    }
+
+    @Override
+    public String toString() {
+        return "InsurancePolicy{" +
+                "id=" + id +
+                ", policyName='" + policyName + '\'' +
+                ", patientID=" + patientID +
+                ", providerID=" + providerID +
+                ", coverageDetails='" + coverageDetails + '\'' +
+                '}';
     }
 }

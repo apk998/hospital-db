@@ -7,6 +7,14 @@ public class Surgery {
     private String surgeryDate;
     private int apptID;
 
+    public Surgery(int id, int surgeryID, String surgeryName, String surgeryDate, int apptID) {
+        this.id = id;
+        this.surgeryID = surgeryID;
+        this.surgeryName = surgeryName;
+        this.surgeryDate = surgeryDate;
+        this.apptID = apptID;
+    }
+
     public int getId() {
         return id;
     }
@@ -45,5 +53,16 @@ public class Surgery {
 
     public void setApptID(int apptID) {
         this.apptID = apptID;
+    }
+
+    @Override
+    public String toString() {
+        return "Surgery{" +
+                "id=" + id +
+                ", surgeryID=" + surgeryID +
+                ", surgeryName='" + surgeryName + '\'' +
+                ", surgeryDate='" + surgeryDate + '\'' +
+                ", apptID=" + apptID +
+                '}';
     }
 }

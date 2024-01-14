@@ -8,6 +8,15 @@ public class Admission {
     private String dischargeDate;
     private int bedID;
 
+    public Admission(int id, int admitNumber, int patientID, String admitDate, String dischargeDate, int bedID) {
+        this.id = id;
+        this.admitNumber = admitNumber;
+        this.patientID = patientID;
+        this.admitDate = admitDate;
+        this.dischargeDate = dischargeDate;
+        this.bedID = bedID;
+    }
+
     public int getId() {
         return id;
     }
@@ -54,5 +63,17 @@ public class Admission {
 
     public void setBedID(int bedID) {
         this.bedID = bedID;
+    }
+
+    @Override
+    public String toString() {
+        return "Admission{" +
+                "id=" + id +
+                ", admitNumber=" + admitNumber +
+                ", patientID=" + patientID +
+                ", admitDate='" + admitDate + '\'' +
+                ", dischargeDate='" + dischargeDate + '\'' +
+                ", bedID=" + bedID +
+                '}';
     }
 }

@@ -6,6 +6,13 @@ public class Bed {
     private int wardNumber;
     private boolean availability;
 
+    public Bed(int id, int bedID, int wardNumber, boolean availability) {
+        this.id = id;
+        this.bedID = bedID;
+        this.wardNumber = wardNumber;
+        this.availability = availability;
+    }
+
     public int getId() {
         return id;
     }
@@ -36,5 +43,15 @@ public class Bed {
 
     public void setAvailability(boolean availability) {
         this.availability = availability;
+    }
+
+    @Override
+    public String toString() {
+        return "Bed{" +
+                "id=" + id +
+                ", bedID=" + bedID +
+                ", wardNumber=" + wardNumber +
+                ", availability=" + availability +
+                '}';
     }
 }

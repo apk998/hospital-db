@@ -16,6 +16,15 @@ public class Prescription {
     private int apptId;
     private List<Prescription> prescriptionList;
 
+    public Prescription(int id, int prescriptionID, int medicationID, String prescriptionDate, int apptId, List<Prescription> prescriptionList) {
+        this.id = id;
+        this.prescriptionID = prescriptionID;
+        this.medicationID = medicationID;
+        this.prescriptionDate = prescriptionDate;
+        this.apptId = apptId;
+        this.prescriptionList = prescriptionList;
+    }
+
     public int getId() {
         return id;
     }
@@ -67,5 +76,17 @@ public class Prescription {
 
     public void setPrescriptionList(List<Prescription> prescriptionList) {
         this.prescriptionList = prescriptionList;
+    }
+
+    @Override
+    public String toString() {
+        return "Prescription{" +
+                "id=" + id +
+                ", prescriptionID=" + prescriptionID +
+                ", medicationID=" + medicationID +
+                ", prescriptionDate='" + prescriptionDate + '\'' +
+                ", apptId=" + apptId +
+                ", prescriptionList=" + prescriptionList +
+                '}';
     }
 }

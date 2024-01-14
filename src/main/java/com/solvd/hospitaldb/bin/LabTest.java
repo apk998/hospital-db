@@ -6,6 +6,13 @@ public class LabTest {
     private String testName;
     private String testDescription;
 
+    public LabTest(int id, int testID, String testName, String testDescription) {
+        this.id = id;
+        this.testID = testID;
+        this.testName = testName;
+        this.testDescription = testDescription;
+    }
+
     public int getId() {
         return id;
     }
@@ -36,5 +43,15 @@ public class LabTest {
 
     public void setTestDescription(String testDescription) {
         this.testDescription = testDescription;
+    }
+
+    @Override
+    public String toString() {
+        return "LabTest{" +
+                "id=" + id +
+                ", testID=" + testID +
+                ", testName='" + testName + '\'' +
+                ", testDescription='" + testDescription + '\'' +
+                '}';
     }
 }
