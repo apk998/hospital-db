@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.hospitaldb.dao.BedDAO">
+    <insert id="create" useGeneratedKeys="true" keyProperty="id">
+        insert into beds (bed_id, ward_number, availability)
+        values (#{bedID}, #{wardNumber}, #{availability})
+    </insert>
+
+    <select id="findByID" resultMap="BedResultMap">
+        select * from beds where id = #{id}
+    </select>
+
+    <update id="updateByID">
+        update beds set
+        bed_id = #{bed.bedID},
+        ward_number = #{bed.wardNumber},
+        availability = #{bed.availability},
+        where id = #{id}
+    </update>
+
+    <delete id="deleteByID">
+        delete from beds where id = #{id}
+    </delete>
+
+    <resultMap id="BedResultMap" type="com.solvd.hospitaldb.bin.Bed" autoMapping="false">
+        <id property="id" column="id" />
+        <result property="bedID" column="bed_id"/>
+        <result property="wardNumber" column="ward_number" />
+        <result property="availability" column="availability" />
+    </resultMap>
+</mapper>

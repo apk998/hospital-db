@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.hospitaldb.dao.AdmissionDAO">
+    <insert id="create" useGeneratedKeys="true" keyProperty="id">
+        insert into admissions (admission_id, patient_id, admit_date, discharge_date, bed_id)
+        values (#{admitID}, #{patientID}, #{admitDate}, #{dischargeDate}, #{bedID})
+    </insert>
+
+    <select id="findByID" resultMap="AdmissionResultMap">
+        select * from admissions where id = #{id}
+    </select>
+
+    <update id="updateByID">
+        update admissions set
+        admit_id = #{admission.admitID},
+        patient_id = #{admission.patientID},
+        admit_date = #{admission.admitDate},
+        discharge_date = #{admission.dischargeDate},
+        bed_id = #{admission.bedID}
+        where id = #{id}
+    </update>
+
+    <delete id="deleteByID">
+        delete from admissions where id = #{id}
+    </delete>
+
+    <resultMap id="AdmissionResultMap" type="com.solvd.hospitaldb.bin.Admission" autoMapping="false">
+        <id property="id" column="id" />
+        <result property="admitID" column="admission_id"/>
+        <result property="admitDate" column="admit_date" />
+        <result property="dischargeDate" column="discharge_date" />
+        <association property="bed" resultMap="" />
+        <association property="patient" resultMap=""/>
+    </resultMap>
+</mapper>

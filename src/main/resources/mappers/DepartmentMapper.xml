@@ -13,9 +13,9 @@
 
     <update id="updateByName">
         update departments set
-        department_id = #{departments.deptID}
-        department_name = #{departments.deptName}
-        department_wing = #{departments.deptWing}
+        department_id = #{department.deptID}
+        department_name = #{department.deptName}
+        department_wing = #{department.deptWing}
         where id = #{id}
     </update>
 
