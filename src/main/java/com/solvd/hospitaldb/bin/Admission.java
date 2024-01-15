@@ -3,12 +3,12 @@ package com.solvd.hospitaldb.bin;
 public class Admission {
     private int id;
     private int admitID;
-    private int patientID;
+    private Patient patientID;
     private String admitDate;
     private String dischargeDate;
-    private int bedID;
+    private Bed bedID;
 
-    public Admission(int id, int admitID, int patientID, String admitDate, String dischargeDate, int bedID) {
+    public Admission(int id, int admitID, Patient patientID, String admitDate, String dischargeDate, Bed bedID) {
         this.id = id;
         this.admitID = admitID;
         this.patientID = patientID;
@@ -33,11 +33,11 @@ public class Admission {
         this.admitID = admitID;
     }
 
-    public int getPatientID() {
+    public Patient getPatientID() {
         return patientID;
     }
 
-    public void setPatientID(int patientID) {
+    public void setPatientID(Patient patientID) {
         this.patientID = patientID;
     }
 
@@ -57,11 +57,11 @@ public class Admission {
         this.dischargeDate = dischargeDate;
     }
 
-    public int getBedID() {
+    public Bed getBedID() {
         return bedID;
     }
 
-    public void setBedID(int bedID) {
+    public void setBedID(Bed bedID) {
         this.bedID = bedID;
     }
 

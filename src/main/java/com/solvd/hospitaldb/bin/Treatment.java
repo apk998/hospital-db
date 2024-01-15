@@ -5,9 +5,9 @@ public class Treatment {
     private int treatmentID;
     private String treatmentDescription;
     private String treatmentDate;
-    private int apptID;
+    private Appointment apptID;
 
-    public Treatment(int id, int treatmentID, String treatmentDescription, String treatmentDate, int apptID) {
+    public Treatment(int id, int treatmentID, String treatmentDescription, String treatmentDate, Appointment apptID) {
         this.id = id;
         this.treatmentID = treatmentID;
         this.treatmentDescription = treatmentDescription;
@@ -47,11 +47,11 @@ public class Treatment {
         this.treatmentDate = treatmentDate;
     }
 
-    public int getApptID() {
+    public Appointment getApptID() {
         return apptID;
     }
 
-    public void setApptID(int apptID) {
+    public void setApptID(Appointment apptID) {
         this.apptID = apptID;
     }
 

@@ -10,7 +10,7 @@ public interface DepartmentDAO extends BaseDAO<Department> {
 
     Optional<Department> findById(int id);
 
-    void updateByID(@Param("department") Department department, @Param("id") int id);
+    void updateByID(@Param("bed") Department department, @Param("id") int id);
 
     void deleteByID(Department department);
 }

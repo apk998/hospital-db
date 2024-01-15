@@ -52,10 +52,7 @@ public class DoctorDAOImpl implements DoctorDAO {
                 int doctorID = rs.getInt("doctor_id");
                 String firstName = rs.getString("first_name");
                 String lastName = rs.getString("last_name");
-
-                int departmentId = rs.getInt("department_id");
-                Department department = getDepartmentById(departmentId);
-
+                Department department = (Department) rs.getObject("department_id");
                 String contactNumber = rs.getString("contact_number");
 
                 doctor = new Doctor(id1, doctorID, firstName, lastName, department, contactNumber);

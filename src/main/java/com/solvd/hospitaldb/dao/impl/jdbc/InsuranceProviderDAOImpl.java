@@ -1,6 +1,5 @@
 package com.solvd.hospitaldb.dao.impl.jdbc;
 
-import com.solvd.hospitaldb.bin.Admission;
 import com.solvd.hospitaldb.bin.InsuranceProvider;
 import com.solvd.hospitaldb.dao.InsuranceProviderDAO;
 import com.solvd.hospitaldb.util.ConnectionPool;

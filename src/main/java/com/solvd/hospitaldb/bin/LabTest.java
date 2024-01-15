@@ -2,11 +2,11 @@ package com.solvd.hospitaldb.bin;
 
 public class LabTest {
     private int id;
-    private int testID;
+    private Integer testID;
     private String testName;
     private String testDescription;
 
-    public LabTest(int id, int testID, String testName, String testDescription) {
+    public LabTest(int id, Integer testID, String testName, String testDescription) {
         this.id = id;
         this.testID = testID;
         this.testName = testName;
@@ -21,11 +21,11 @@ public class LabTest {
         this.id = id;
     }
 
-    public int getTestID() {
+    public Integer getTestID() {
         return testID;
     }
 
-    public void setTestID(int testID) {
+    public void setTestID(Integer testID) {
         this.testID = testID;
     }
 

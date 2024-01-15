@@ -5,11 +5,11 @@ import java.math.BigDecimal;
 public class Payment {
     private int id;
     private int paymentID;
-    private int patientID;
+    private Patient patientID;
     private BigDecimal amount;
     private String paymentDate;
 
-    public Payment(int id, int paymentID, int patientID, BigDecimal amount, String paymentDate) {
+    public Payment(int id, int paymentID, Patient patientID, BigDecimal amount, String paymentDate) {
         this.id = id;
         this.paymentID = paymentID;
         this.patientID = patientID;
@@ -33,11 +33,11 @@ public class Payment {
         this.paymentID = paymentID;
     }
 
-    public int getPatientID() {
+    public Patient getPatientID() {
         return patientID;
     }
 
-    public void setPatientID(int patientID) {
+    public void setPatientID(Patient patientID) {
         this.patientID = patientID;
     }
 

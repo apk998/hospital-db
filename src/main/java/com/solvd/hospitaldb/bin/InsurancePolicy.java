@@ -4,11 +4,11 @@ public class InsurancePolicy {
     private int id;
     private int policyID;
     private String policyName;
-    private int patientID;
-    private int providerID;
+    private Patient patientID;
+    private InsuranceProvider providerID;
     private String coverageDetails;
 
-    public InsurancePolicy(int id, int policyID, String policyName, int patientID, int providerID, String coverageDetails) {
+    public InsurancePolicy(int id, int policyID, String policyName, Patient patientID, InsuranceProvider providerID, String coverageDetails) {
         this.id = id;
         this.policyID = policyID;
         this.policyName = policyName;
@@ -35,19 +35,19 @@ public class InsurancePolicy {
     public void setPolicyName(String policyName) {
         this.policyName = policyName;
     }
-    public int getPatientID() {
+    public Patient getPatientID() {
         return patientID;
     }
 
-    public void setPatientID(int patientID) {
+    public void setPatientID(Patient patientID) {
         this.patientID = patientID;
     }
 
-    public int getProviderID() {
+    public InsuranceProvider getProviderID() {
         return providerID;
     }
 
-    public void setProviderID(int providerID) {
+    public void setProviderID(InsuranceProvider providerID) {
         this.providerID = providerID;
     }
 

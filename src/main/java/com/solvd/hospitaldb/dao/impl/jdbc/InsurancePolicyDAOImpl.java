@@ -1,7 +1,8 @@
 package com.solvd.hospitaldb.dao.impl.jdbc;
 
-import com.solvd.hospitaldb.bin.Admission;
 import com.solvd.hospitaldb.bin.InsurancePolicy;
+import com.solvd.hospitaldb.bin.InsuranceProvider;
+import com.solvd.hospitaldb.bin.Patient;
 import com.solvd.hospitaldb.dao.InsurancePolicyDAO;
 import com.solvd.hospitaldb.util.ConnectionPool;
 import org.apache.logging.log4j.LogManager;
@@ -51,8 +52,8 @@ public class InsurancePolicyDAOImpl implements InsurancePolicyDAO {
                 int id1 = rs.getInt("id");
                 int policyID = rs.getInt("policy_id");
                 String policyName = rs.getString("policy_name");
-                int patientID = rs.getInt("patient_id");
-                int providerID = rs.getInt("provider_id");
+                Patient patientID = (Patient) rs.getObject("patient_id");
+                InsuranceProvider providerID = (InsuranceProvider) rs.getObject("provider_id");
                 String coverageDetails = rs.getString("coverage_details");
 
                 policy = new InsurancePolicy(id1, policyID, policyName, patientID, providerID, coverageDetails);

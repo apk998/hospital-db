@@ -2,11 +2,11 @@ package com.solvd.hospitaldb.bin;
 
 public class Bed {
     private int id;
-    private int bedID;
+    private Integer bedID;
     private int wardNumber;
     private boolean availability;
 
-    public Bed(int id, int bedID, int wardNumber, boolean availability) {
+    public Bed(int id, Integer bedID, int wardNumber, boolean availability) {
         this.id = id;
         this.bedID = bedID;
         this.wardNumber = wardNumber;
@@ -21,11 +21,11 @@ public class Bed {
         this.id = id;
     }
 
-    public int getBedID() {
+    public Integer getBedID() {
         return bedID;
     }
 
-    public void setBedID(int bedID) {
+    public void setBedID(Integer bedID) {
         this.bedID = bedID;
     }
 

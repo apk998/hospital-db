@@ -1,7 +1,8 @@
 package com.solvd.hospitaldb.dao.impl.jdbc;
 
-import com.solvd.hospitaldb.bin.Admission;
 import com.solvd.hospitaldb.bin.Appointment;
+import com.solvd.hospitaldb.bin.Doctor;
+import com.solvd.hospitaldb.bin.Patient;
 import com.solvd.hospitaldb.dao.AppointmentDAO;
 import com.solvd.hospitaldb.util.ConnectionPool;
 import org.apache.logging.log4j.LogManager;
@@ -48,9 +49,9 @@ public class AppointmentDAOImpl implements AppointmentDAO {
 
             if (rs.next()) {
                 int id1 = rs.getInt("id");
-                int apptID = rs.getInt("appt_id");
-                int patientID = rs.getInt("patient_id");
-                int doctorID = rs.getInt("doctor_id");
+                Integer apptID = rs.getInt("appt_id");
+                Patient patientID = (Patient) rs.getObject("patient_id");
+                Doctor doctorID = (Doctor) rs.getObject("doctor_id");
                 String apptDate = rs.getString("appt_date");
 
                 appointment = new Appointment(id1, apptID, patientID, doctorID, apptDate);

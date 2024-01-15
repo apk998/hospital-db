@@ -1,6 +1,8 @@
 package com.solvd.hospitaldb.dao.impl.jdbc;
 
 import com.solvd.hospitaldb.bin.Admission;
+import com.solvd.hospitaldb.bin.Bed;
+import com.solvd.hospitaldb.bin.Patient;
 import com.solvd.hospitaldb.dao.AdmissionDAO;
 import com.solvd.hospitaldb.util.ConnectionPool;
 import org.apache.logging.log4j.LogManager;
@@ -49,10 +51,10 @@ public class AdmissionDAOImpl implements AdmissionDAO {
             if (rs.next()) {
                 int id1 = rs.getInt("id");
                 int admitID = rs.getInt("admission_id");
-                int patientID = rs.getInt("patient_id");
+                Patient patientID = (Patient) rs.getObject("patient_id");
                 String admitDate = rs.getString("admit_date");
                 String dischargeDate = rs.getString("discharge_date");
-                int bedID = rs.getInt("bed_id");
+                Bed bedID = (Bed) rs.getObject("bed_id");
 
                 admission = new Admission(id1, admitID, patientID, admitDate, dischargeDate, bedID);
             }

@@ -3,12 +3,12 @@ package com.solvd.hospitaldb.bin;
 public class TestResult {
     private int id;
     private int resultID;
-    private int patientID;
-    private int testID;
+    private Patient patientID;
+    private LabTest testID;
     private String resultDetails;
     private String testDate;
 
-    public TestResult(int id, int resultID, int patientID, int testID, String resultDetails, String testDate) {
+    public TestResult(int id, int resultID, Patient patientID, LabTest testID, String resultDetails, String testDate) {
         this.id = id;
         this.resultID = resultID;
         this.patientID = patientID;
@@ -33,19 +33,19 @@ public class TestResult {
         this.resultID = resultID;
     }
 
-    public int getPatientID() {
+    public Patient getPatientID() {
         return patientID;
     }
 
-    public void setPatientID(int patientID) {
+    public void setPatientID(Patient patientID) {
         this.patientID = patientID;
     }
 
-    public int getTestID() {
+    public LabTest getTestID() {
         return testID;
     }
 
-    public void setTestID(int testID) {
+    public void setTestID(LabTest testID) {
         this.testID = testID;
     }
 

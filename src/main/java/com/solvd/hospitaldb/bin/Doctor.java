@@ -2,13 +2,13 @@ package com.solvd.hospitaldb.bin;
 
 public class Doctor {
     private int id;
-    private int doctorID;
+    private Integer doctorID;
     private String firstName;
     private String lastName;
     private Department department;
     private String contactNumber;
 
-    public Doctor(int id, int doctorID, String firstName, String lastName, Department department, String contactNumber) {
+    public Doctor(int id, Integer doctorID, String firstName, String lastName, Department department, String contactNumber) {
         this.id = id;
         this.doctorID = doctorID;
         this.firstName = firstName;
@@ -25,11 +25,11 @@ public class Doctor {
         this.id = id;
     }
 
-    public int getDoctorID() {
+    public Integer getDoctorID() {
         return doctorID;
     }
 
-    public void setDoctorID(int doctorID) {
+    public void setDoctorID(Integer doctorID) {
         this.doctorID = doctorID;
     }
 

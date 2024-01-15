@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.hospitaldb.dao.MedicationDAO">
+    <insert id="create" useGeneratedKeys="true" keyProperty="id">
+        insert into medications (medication_id, medication_name, dosage, usage_instructions)
+        values (#{medicationID}, #{medicationName}, #{dosage}, #{usageInstructions})
+    </insert>
+
+    <select id="findByID" resultMap="MedicationResultMap">
+        select * from medications where id = #{id}
+    </select>
+
+    <update id="updateByID">
+        update medications set
+        medication_id = #{medication.medicationID},
+        medication_name = #{medication.medicationName},
+        dosage = #{medication.dosage},
+        usage_instructions = #{medication.usageInstructions},
+        where id = #{id}
+    </update>
+
+    <delete id="deleteByID">
+        delete from medications where id = #{id}
+    </delete>
+
+    <resultMap id="MedicationResultMap" type="com.solvd.hospitaldb.bin.Medication" autoMapping="false">
+        <id property="id" column="id" />
+        <result property="medicationID" column="medication_id"/>
+        <result property="medicationName" column="medication_name" />
+        <result property="dosage" column="dosage" />
+        <result property="usageInstructions" column="usage_instructions" />
+    </resultMap>
+</mapper>

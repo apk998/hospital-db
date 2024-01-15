@@ -11,17 +11,17 @@ import javax.xml.bind.annotation.XmlType;
 public class Prescription {
     private int id;
     private int prescriptionID;
-    private int medicationID;
+    private Medication medicationID;
     private String prescriptionDate;
-    private int apptId;
+    private Appointment apptID;
     private List<Prescription> prescriptionList;
 
-    public Prescription(int id, int prescriptionID, int medicationID, String prescriptionDate, int apptId, List<Prescription> prescriptionList) {
+    public Prescription(int id, int prescriptionID, Medication medicationID, String prescriptionDate, Appointment apptID, List<Prescription> prescriptionList) {
         this.id = id;
         this.prescriptionID = prescriptionID;
         this.medicationID = medicationID;
         this.prescriptionDate = prescriptionDate;
-        this.apptId = apptId;
+        this.apptID = apptID;
         this.prescriptionList = prescriptionList;
     }
 
@@ -43,11 +43,11 @@ public class Prescription {
     }
 
     @XmlElement(name = "medication_name")
-    public int getMedicationID() {
+    public Medication getMedicationID() {
         return medicationID;
     }
 
-    public void setMedicationID(int medicationID) {
+    public void setMedicationID(Medication medicationID) {
         this.medicationID = medicationID;
     }
 
@@ -61,12 +61,12 @@ public class Prescription {
     }
 
     @XmlElement(name = "appt_id")
-    public int getApptId() {
-        return apptId;
+    public Appointment getApptID() {
+        return apptID;
     }
 
-    public void setApptId(int apptId) {
-        this.apptId = apptId;
+    public void setApptID(Appointment apptID) {
+        this.apptID = apptID;
     }
 
     @XmlElement(name = "prescription")
@@ -85,7 +85,7 @@ public class Prescription {
                 ", prescriptionID=" + prescriptionID +
                 ", medicationID=" + medicationID +
                 ", prescriptionDate='" + prescriptionDate + '\'' +
-                ", apptId=" + apptId +
+                ", apptId=" + apptID +
                 ", prescriptionList=" + prescriptionList +
                 '}';
     }

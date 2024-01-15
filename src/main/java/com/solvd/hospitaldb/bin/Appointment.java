@@ -2,12 +2,12 @@ package com.solvd.hospitaldb.bin;
 
 public class Appointment {
     private int id;
-    private int apptID;
-    private int patientID;
-    private int doctorID;
+    private Integer apptID;
+    private Patient patientID;
+    private Doctor doctorID;
     private String apptDate;
 
-    public Appointment(int id, int apptID, int patientID, int doctorID, String apptDate) {
+    public Appointment(int id, Integer apptID, Patient patientID, Doctor doctorID, String apptDate) {
         this.id = id;
         this.apptID = apptID;
         this.patientID = patientID;
@@ -23,27 +23,27 @@ public class Appointment {
         this.id = id;
     }
 
-    public int getApptID() {
+    public Integer getApptID() {
         return apptID;
     }
 
-    public void setApptID(int apptID) {
+    public void setApptID(Integer apptID) {
         this.apptID = apptID;
     }
 
-    public int getPatientID() {
+    public Patient getPatientID() {
         return patientID;
     }
 
-    public void setPatientID(int patientID) {
+    public void setPatientID(Patient patientID) {
         this.patientID = patientID;
     }
 
-    public int getDoctorID() {
+    public Doctor getDoctorID() {
         return doctorID;
     }
 
-    public void setDoctorID(int doctorID) {
+    public void setDoctorID(Doctor doctorID) {
         this.doctorID = doctorID;
     }
 
