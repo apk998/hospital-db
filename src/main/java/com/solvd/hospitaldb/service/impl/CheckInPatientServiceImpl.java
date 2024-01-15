@@ -1,51 +1,47 @@
 package com.solvd.hospitaldb.service.impl;
 
 import com.solvd.hospitaldb.bin.Admission;
-import com.solvd.hospitaldb.bin.Doctor;
+import com.solvd.hospitaldb.bin.InsurancePolicy;
+import com.solvd.hospitaldb.bin.Patient;
+import com.solvd.hospitaldb.dao.AdmissionDAO;
+import com.solvd.hospitaldb.bin.InsurancePolicy;
+import com.solvd.hospitaldb.dao.InsurancePolicyDAO;
 import com.solvd.hospitaldb.dao.PatientDAO;
 import com.solvd.hospitaldb.service.CheckInPatientService;
 
-public class CheckInPatientServiceImpl implements CheckInPatientService<Doctor> {
+public class CheckInPatientServiceImpl implements CheckInPatientService {
 
+    private final AdmissionDAO admissionDAO;
+    private final InsurancePolicyDAO insurancePolicyDAO;
     private final PatientDAO patientDAO;
-    private AdmissionDAO admissionDAO;
-    private InsurancePolicyDAO insurancePolicyDAO;
-    private InsuranceProviderDAO insuranceProviderDAO;
-    private AppointmentDAO appointmentDAO;
 
-    public CheckInPatientServiceImpl(PatientDAO patientDAO, AdmissionDAO admissionDAO,
-                                     InsurancePolicyDAO insurancePolicyDAO, InsuranceProviderDAO insuranceProviderDAO,
-                                     AppointmentDAO appointmentDAO) {
-        this.patientDAO = patientDAO;
+    public CheckInPatientServiceImpl(AdmissionDAO admissionDAO, InsurancePolicyDAO insurancePolicyDAO, PatientDAO patientDAO) {
         this.admissionDAO = admissionDAO;
         this.insurancePolicyDAO = insurancePolicyDAO;
-        this.insuranceProviderDAO = insuranceProviderDAO;
-        this.appointmentDAO = appointmentDAO;
+        this.patientDAO = patientDAO;
     }
 
     @Override
-    public Admission checkInPatientEmergency(String firstName, String lastName, String dateOfBirth, String gender, String contactNumber,
-                                             int bedID, String admitDate, String dischargeDate) {
-        // Implement the logic to check in a patient for emergency admission.
-        // Create patient, make entry through AdmissionDAO, and return the Admission object.
+    public void checkInPatient(String firstName, String lastName, String gender, String reason, String admitDate) {
+        // Create a new patient
+        Patient patient = new Patient(0, 0, firstName, lastName, dateOfBirth, gender, contactNumber);
+
+        // Insert the patient into the database (must fix return type issue)
+        patientDAO.create(patient);
+
+        // Create a new admission for the patient
+        Admission admission = new Admission(0, 0, patientId, admitDate, null, 0);
+
+        // Insert the admission into the database
+        admissionDAO.create(admission);
     }
 
     @Override
-    public Admission checkInPatientAppointment(String firstName, String lastName, String dateOfBirth, String gender, String contactNumber,
-                                               int doctorID, String apptDate) {
-        // Implement the logic to check in a patient with an appointment (checkup or sick visit).
-        // Create patient, check appointment status, make entry through AdmissionDAO, and return the Admission object.
-    }
+    public void registerInsurance(int patientID, String policyName, int providerID, String coverageDetails) {
+        // Register the insurance policy
+        InsurancePolicy insurancePolicy = new InsurancePolicy(0, policyName, patientID, providerID, coverageDetails);
 
-    @Override
-    public void registerInsuranceInformation(int patientID, String policyName, int providerID, String coverageDetails) {
-        // Implement the logic to register insurance information for a patient.
-        // Invoke InsurancePolicyDAO to save data.
-    }
-
-    @Override
-    public void registerInsuranceProvider(String providerName, String contactNumber, String address) {
-        // Implement the logic to register an insurance provider.
-        // Invoke InsuranceProviderDAO to save data.
+        // Insert the insurance policy into the database
+        insurancePolicyDAO.create(insurancePolicy);
     }
 }

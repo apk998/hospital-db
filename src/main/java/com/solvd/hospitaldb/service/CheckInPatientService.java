@@ -1,16 +1,8 @@
 package com.solvd.hospitaldb.service;
 
-import com.solvd.hospitaldb.bin.Admission;
+public interface CheckInPatientService {
 
-public interface CheckInPatientService<T> {
+    void checkInPatient(String firstName, String lastName, String gender, String reason, String admitDate);
 
-    Admission checkInPatientEmergency(String firstName, String lastName, String dateOfBirth, String gender, String contactNumber,
-                                      int bedID, String admitDate, String dischargeDate);
-
-    Admission checkInPatientAppointment(String firstName, String lastName, String dateOfBirth, String gender, String contactNumber,
-                                        int doctorID, String apptDate);
-
-    void registerInsuranceInformation(int patientID, String policyName, int providerID, String coverageDetails);
-
-    void registerInsuranceProvider(String providerName, String contactNumber, String address);
+    void registerInsurance(int patientID, String policyName, int providerID, String coverageDetails);
 }

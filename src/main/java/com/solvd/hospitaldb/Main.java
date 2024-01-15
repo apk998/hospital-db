@@ -1,37 +1,39 @@
 package com.solvd.hospitaldb;
 
-import com.solvd.hospitaldb.bin.Patient;
-import com.solvd.hospitaldb.dao.PatientDAO;
-import com.solvd.hospitaldb.util.Database;
-import com.solvd.hospitaldb.dao.impl.jdbc.PatientDAOImpl;
+import com.solvd.hospitaldb.dao.*;
+import com.solvd.hospitaldb.dao.impl.jdbc.*;
+import com.solvd.hospitaldb.service.CheckInPatientService;
+import com.solvd.hospitaldb.service.CheckupService;
+import com.solvd.hospitaldb.service.EmergencyAdmitService;
+import com.solvd.hospitaldb.service.impl.CheckInPatientServiceImpl;
+import com.solvd.hospitaldb.service.impl.CheckupServiceImpl;
+import com.solvd.hospitaldb.service.impl.EmergencyAdmitServiceImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import java.sql.SQLException;
-import java.sql.Connection;
-import java.util.Optional;
 
 public class Main {
 
     private static final Logger LOGGER= LogManager.getLogger(Main.class);
 
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) {
 
-        // JDBC
+        // Initialize DAOs
+        AdmissionDAO admissionDAO = new AdmissionDAOImpl();
+        InsurancePolicyDAO insurancePolicyDAO = new InsurancePolicyDAOImpl();
         PatientDAO patientDAO = new PatientDAOImpl();
-        Patient patient = new Patient(0, 101, "Max", "Stirner", "1990-08-10", "Male", "215-386-7171");
-        int result = patientDAO.create(patient);
-        LOGGER.info(result);
+        BedDAO bedDAO = new BedDAOImpl();
+        AppointmentDAO appointmentDAO = new AppointmentDAOImpl();
 
-        Optional<Patient> patient0 = patientDAO.findByID(0);
-        LOGGER.info(patient0);
+        // Initialize Services
+        CheckInPatientService checkin = new CheckInPatientServiceImpl(admissionDAO, insurancePolicyDAO, patientDAO);
+        EmergencyAdmitService emergency = new EmergencyAdmitServiceImpl(admissionDAO, bedDAO);
+        CheckupService checkup = new CheckupServiceImpl(appointmentDAO);
 
-        Patient patient1 = new Patient(0, 101, "Emile", "Durkheim", "1990-08-10", "Male", "215-685-6322");
-        patientDAO.updateByID(patient1, 0);
-        LOGGER.info(patient1);
 
-        LOGGER.info(patientDAO.deleteByID(patient1));
-
-        //MyBatis
-
+        emergency.admitPatientEmergency(2, 2, "Car accident", "2024-01-13");
+        checkin.checkInPatient("Max", "Stirner", "Male", "Emergency", "2024-01-13");
+        checkin.registerInsurance(2, "Policy A", 6, "Full Coverage");
+        checkup.scheduleCheckup(2, 4, "2024-01-30");
+        emergency.dischargePatient(2, "2024-01-14");
         }
     }
