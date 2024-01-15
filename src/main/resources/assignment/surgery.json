@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "surgeryID": 188,
+    "surgeryName": "Appendectomy",
+    "surgeryDate": "2023-12-15",
+    "apptID": 9137
+  },
+  {
+    "id": 2,
+    "surgeryID": 290,
+    "surgeryName": "Knee Replacement",
+    "surgeryDate": "2024-01-08",
+    "apptID": 9986
+  },
+  {
+    "id": 3,
+    "surgeryID": 304,
+    "surgeryName": "Caesarean Section",
+    "surgeryDate": "2024-01-09",
+    "apptID": 10025
+  }
+]

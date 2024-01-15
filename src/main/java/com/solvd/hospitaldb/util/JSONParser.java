@@ -9,10 +9,11 @@ import org.apache.logging.log4j.Logger;
 import java.io.File;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Collections;
 
-public class JSONUtil {
+public class JSONParser {
     private static final Logger LOGGER= LogManager.getLogger(Main.class);
-    private static final String JSON_FILE_PATH = "path/to/surgery_data.json";
+    private static final String JSON_FILE_PATH = "src/main/resources/assignment/surgery.json";
 
     public static List<Surgery> readSurgeryData() {
         ObjectMapper objectMapper = new ObjectMapper();
@@ -23,16 +24,7 @@ public class JSONUtil {
             return Arrays.asList(surgeries);
         } catch (Exception e) {
             LOGGER.info("Could not read data");
-        }
-
-    public static void writeSurgeryData(List<Surgery> surgeries) {
-        ObjectMapper objectMapper = new ObjectMapper();
-
-        try {
-            File file = new File(JSON_FILE_PATH);
-            objectMapper.writeValue(file, surgeries);
-        } catch (Exception e) {
-            LOGGER.info("Could not write data");
+            return Collections.emptyList();
         }
     }
 }

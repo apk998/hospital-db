@@ -13,31 +13,35 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
 
 public class DOMParser {
-    private static final Logger LOGGER= LogManager.getLogger(Main.class);
-    public void parseAppointments(String xmlFilePath) {
+    private static final Logger LOGGER= LogManager.getLogger(DOMParser.class);
+    File file = new File("src/main/resources/assignment/payment.xml");
+
+    public void parsePayment(String xmlFilePath) {
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
 
-            Document document = builder.parse(new File(xmlFilePath));
+            Document document = builder.parse(file));
             Element root = document.getDocumentElement();
-            NodeList appointmentList = root.getElementsByTagName("appointment");
+            NodeList paymentList = root.getElementsByTagName("payment");
 
-            for (int i = 0; i < appointmentList.getLength(); i++) {
-                Node appointmentNode = appointmentList.item(i);
+            for (int i = 0; i < paymentList.getLength(); i++) {
+                Node paymentNode = paymentList.item(i);
 
-                if (appointmentNode.getNodeType() == Node.ELEMENT_NODE) {
-                    Element appointmentElement = (Element) appointmentNode;
+                if (paymentNode.getNodeType() == Node.ELEMENT_NODE) {
+                    Element paymentElement = (Element) paymentNode;
 
-                    String apptId = appointmentElement.getElementsByTagName("appt_id").item(0).getTextContent();
-                    String patientId = appointmentElement.getElementsByTagName("patient_id").item(0).getTextContent();
-                    String doctorId = appointmentElement.getElementsByTagName("doctor_id").item(0).getTextContent();
-                    String apptDate = appointmentElement.getElementsByTagName("appt_date").item(0).getTextContent();
+                    String id = paymentElement.getElementsByTagName("id").item(0).getTextContent();
+                    String paymentId = paymentElement.getElementsByTagName("payment_id").item(0).getTextContent();
+                    String patientId = paymentElement.getElementsByTagName("patient_id").item(0).getTextContent();
+                    String amount = paymentElement.getElementsByTagName("amount").item(0).getTextContent();
+                    String paymentDate = paymentElement.getElementsByTagName("payment_date").item(0).getTextContent();
 
-                    LOGGER.info("Appointment ID: " + apptId);
+                    LOGGER.info("ID: " + id);
+                    LOGGER.info("Payment ID: " + apptId);
                     LOGGER.info("Patient ID: " + patientId);
-                    LOGGER.info("Doctor ID: " + doctorId);
-                    LOGGER.info("Appointment Date: " + apptDate);
+                    LOGGER.info("Amount: " + amount);
+                    LOGGER.info("Payment Date: " + paymentDate);
                 }
             }
 

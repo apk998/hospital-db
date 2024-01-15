@@ -1,17 +1,14 @@
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           elementFormDefault="qualified"
-           xmlns:tns="http://www.example.com"
-           targetNamespace="http://www.example.com">
-
-    <xs:element name="prescriptions" type="tns:Prescriptions"/>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="prescriptions" type="Prescriptions"/>
     <xs:complexType name="Prescriptions">
         <xs:sequence>
-            <xs:element name="prescription" type="tns:Prescription" maxOccurs="unbounded"/>
+            <xs:element name="prescription" type="Prescription" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
     </xs:complexType>
 
     <xs:complexType name="Prescription">
         <xs:sequence>
+            <xs:element name="id" type="xs:int"/>
             <xs:element name="prescription_id" type="xs:int"/>
             <xs:element name="medication_name" type="xs:string"/>
             <xs:element name="prescription_date" type="xs:date"/>

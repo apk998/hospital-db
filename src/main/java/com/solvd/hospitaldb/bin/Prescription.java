@@ -1,28 +1,30 @@
 package com.solvd.hospitaldb.bin;
 
-import java.util.List;
-
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlAttribute;
+import jakarta.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "prescription")
-@XmlType(propOrder = {"prescriptionId", "medicationName", "prescriptionDate", "apptId"})
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Prescription {
+    @XmlAttribute(name = "id")
     private int id;
+    @XmlAttribute(name = "prescription_id")
     private int prescriptionID;
+    @XmlAttribute(name = "medication_id")
     private Medication medicationID;
+    @XmlAttribute(name = "prescription_date")
     private String prescriptionDate;
+    @XmlAttribute(name = "prescription_date")
     private Appointment apptID;
-    private List<Prescription> prescriptionList;
 
-    public Prescription(int id, int prescriptionID, Medication medicationID, String prescriptionDate, Appointment apptID, List<Prescription> prescriptionList) {
+    public Prescription(int id, int prescriptionID, Medication medicationID, String prescriptionDate, Appointment apptID) {
         this.id = id;
         this.prescriptionID = prescriptionID;
         this.medicationID = medicationID;
         this.prescriptionDate = prescriptionDate;
         this.apptID = apptID;
-        this.prescriptionList = prescriptionList;
     }
 
     public int getId() {
@@ -33,7 +35,6 @@ public class Prescription {
         this.id = id;
     }
 
-    @XmlElement(name = "prescription_id")
     public int getPrescriptionID() {
         return prescriptionID;
     }
@@ -42,7 +43,6 @@ public class Prescription {
         this.prescriptionID = prescriptionID;
     }
 
-    @XmlElement(name = "medication_name")
     public Medication getMedicationID() {
         return medicationID;
     }
@@ -51,7 +51,6 @@ public class Prescription {
         this.medicationID = medicationID;
     }
 
-    @XmlElement(name = "prescription_date")
     public String getPrescriptionDate() {
         return prescriptionDate;
     }
@@ -60,22 +59,12 @@ public class Prescription {
         this.prescriptionDate = prescriptionDate;
     }
 
-    @XmlElement(name = "appt_id")
     public Appointment getApptID() {
         return apptID;
     }
 
     public void setApptID(Appointment apptID) {
         this.apptID = apptID;
-    }
-
-    @XmlElement(name = "prescription")
-    public List<Prescription> getPrescriptionList() {
-        return prescriptionList;
-    }
-
-    public void setPrescriptionList(List<Prescription> prescriptionList) {
-        this.prescriptionList = prescriptionList;
     }
 
     @Override
@@ -86,7 +75,6 @@ public class Prescription {
                 ", medicationID=" + medicationID +
                 ", prescriptionDate='" + prescriptionDate + '\'' +
                 ", apptId=" + apptID +
-                ", prescriptionList=" + prescriptionList +
                 '}';
     }
 }

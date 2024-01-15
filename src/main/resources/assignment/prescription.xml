@@ -1,20 +1,24 @@
-<prescriptions>
+<prescriptions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:noNamespaceSchemaLocation="prescription.xsd">
     <prescription>
-        <prescription_id>1</prescription_id>
+        <id>1</id>
+        <prescription_id>3291</prescription_id>
         <medication_name>Aspirin</medication_name>
         <prescription_date>2024-01-03</prescription_date>
-        <appt_id>1</appt_id>
+        <appt_id>9052</appt_id>
     </prescription>
     <prescription>
-        <prescription_id>2</prescription_id>
+        <id>2</id>
+        <prescription_id>5037</prescription_id>
         <medication_name>Doxycycline</medication_name>
         <prescription_date>2024-01-08</prescription_date>
-        <appt_id>12</appt_id>
+        <appt_id>11208</appt_id>
     </prescription>
     <prescription>
-        <prescription_id>5</prescription_id>
+        <id>3</id>
+        <prescription_id>5584</prescription_id>
         <medication_name>Lamotrigine</medication_name>
         <prescription_date>2024-01-08</prescription_date>
-        <appt_id>14</appt_id>
+        <appt_id>11317</appt_id>
     </prescription>
 </prescriptions>
