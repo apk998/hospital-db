@@ -17,14 +17,12 @@ public class Main {
 
     public static void main(String[] args) {
 
-        // Initialize DAOs
         AdmissionDAO admissionDAO = new AdmissionDAOImpl();
         InsurancePolicyDAO insurancePolicyDAO = new InsurancePolicyDAOImpl();
         PatientDAO patientDAO = new PatientDAOImpl();
         BedDAO bedDAO = new BedDAOImpl();
         AppointmentDAO appointmentDAO = new AppointmentDAOImpl();
 
-        // Initialize Services
         CheckInPatientService checkin = new CheckInPatientServiceImpl(admissionDAO, insurancePolicyDAO, patientDAO);
         EmergencyAdmitService emergency = new EmergencyAdmitServiceImpl(admissionDAO, bedDAO);
         CheckupService checkup = new CheckupServiceImpl(appointmentDAO);
