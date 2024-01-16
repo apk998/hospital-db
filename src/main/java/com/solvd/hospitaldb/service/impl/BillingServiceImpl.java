@@ -13,8 +13,9 @@ public class BillingServiceImpl implements BillingService {
     private final PaymentDAO paymentDAO;
     private final InsurancePolicyDAO insurancePolicyDAO;
 
-    public PaymentServiceImpl(PaymentDAO paymentDAO) {
+    public BillingServiceImpl(PaymentDAO paymentDAO, InsurancePolicyDAO insurancePolicyDAO) {
         this.paymentDAO = paymentDAO;
+        this.insurancePolicyDAO = insurancePolicyDAO;
     }
 
     @Override
