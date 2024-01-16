@@ -8,7 +8,7 @@ import java.util.Optional;
 public interface DepartmentDAO extends BaseDAO<Department> {
     void create(Department department);
 
-    Optional<Department> findById(int id);
+    Optional<Department> findByID(int id);
 
     void updateByID(@Param("bed") Department department, @Param("id") int id);
 

@@ -2,7 +2,6 @@ package com.solvd.hospitaldb.dao;
 
 import com.solvd.hospitaldb.bin.Doctor;
 import org.apache.ibatis.annotations.Param;
-import java.sql.SQLException;
 
 import java.util.Optional;
 

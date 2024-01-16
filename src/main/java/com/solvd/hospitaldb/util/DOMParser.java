@@ -1,6 +1,5 @@
 package com.solvd.hospitaldb.util;
 
-import com.solvd.hospitaldb.Main;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Document;
@@ -16,12 +15,12 @@ public class DOMParser {
     private static final Logger LOGGER= LogManager.getLogger(DOMParser.class);
     File file = new File("src/main/resources/assignment/payment.xml");
 
-    public void parsePayment(String xmlFilePath) {
+    public void parsePayment() {
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
 
-            Document document = builder.parse(file));
+            Document document = builder.parse(file);
             Element root = document.getDocumentElement();
             NodeList paymentList = root.getElementsByTagName("payment");
 
@@ -38,7 +37,7 @@ public class DOMParser {
                     String paymentDate = paymentElement.getElementsByTagName("payment_date").item(0).getTextContent();
 
                     LOGGER.info("ID: " + id);
-                    LOGGER.info("Payment ID: " + apptId);
+                    LOGGER.info("Payment ID: " + paymentId);
                     LOGGER.info("Patient ID: " + patientId);
                     LOGGER.info("Amount: " + amount);
                     LOGGER.info("Payment Date: " + paymentDate);
