@@ -40,8 +40,10 @@ public class Main {
         // Simulate a patient's journey
         Patient newPatient = new Patient(1, 302, "Max", "Stirner",
                 "1990-08-10", "Male", "215-386-7171");
+        Department internal = new Department(1, 1, "Internal medicine", "South");
+        Doctor gp = new Doctor(1, 67, "Orestes", "Brownson", internal, "267-312-8973");
         Appointment newAppointment = new Appointment(1, 9738,
-                302, 67, "2024-01-11");
+                newPatient, gp, "2024-01-11");
         appointmentService.scheduleAppt(newAppointment);
 
         // Patient check-in and insurance registration

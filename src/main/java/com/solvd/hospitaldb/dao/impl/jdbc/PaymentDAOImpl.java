@@ -7,6 +7,7 @@ import com.solvd.hospitaldb.util.ConnectionPool;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -27,7 +28,7 @@ public class PaymentDAOImpl implements PaymentDAO {
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
 
             ps.setInt(1, payment.getPaymentID());
-            ps.setInt(2, payment.getPatientID().getID());
+            ps.setInt(2, payment.getPatientID().getId());
             ps.setBigDecimal(3, payment.getAmount());
             ps.setString(4, payment.getPaymentDate());
             ps.executeUpdate();
@@ -47,7 +48,7 @@ public class PaymentDAOImpl implements PaymentDAO {
         String sql = "SELECT id, payment_id, patient_id, amount, payment_date FROM payments WHERE id = ?";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setInt(1, id);
-            rs = ps.executeQuery;
+            rs = ps.executeQuery();
 
             if (rs.next()) {
                 int id1 = rs.getInt("id");
@@ -80,7 +81,7 @@ public class PaymentDAOImpl implements PaymentDAO {
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
 
             ps.setInt(1, payment.getPaymentID());
-            ps.setInt(2, payment.getPatientID().getID());
+            ps.setInt(2, payment.getPatientID().getId());
             ps.setBigDecimal(3, payment.getAmount());
             ps.setString(4, payment.getPaymentDate());
             ps.executeUpdate();
@@ -131,17 +132,12 @@ public class PaymentDAOImpl implements PaymentDAO {
             if (rs != null) {
                 try {
                     rs.close();
-                } catch (SQLException e); {
+                } catch (SQLException e) {
                     LOGGER.error("Error closing the result set", e);
                 }
             }
             connectionPool.releaseConnection(connection);
         }
         return payments;
-    }
-
-    @Override
-    public double calculateBalance(Patient patient) {
-        return 0;
     }
 }

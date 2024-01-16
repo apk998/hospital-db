@@ -82,7 +82,7 @@ public class PaymentDAOImpl implements PaymentDAO {
         SqlSession sqlSession = Config.getSessionFactory().openSession(false);
         List<Payment> payments = null;
         try {
-            payments.sqlSession.selectList("com.solvd.hospitaldb.dao.PaymentDAO.getPaymentsForPatient", patientID);
+            payments = sqlSession.selectList("com.solvd.hospitaldb.dao.PaymentDAO.getPaymentsForPatient", patientID);
         } catch (PersistenceException e) {
             LOGGER.error("Error getting payments for patient", e);
             sqlSession.rollback();

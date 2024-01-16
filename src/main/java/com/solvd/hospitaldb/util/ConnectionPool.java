@@ -50,13 +50,19 @@ public class ConnectionPool {
     }
 
     public synchronized void releaseConnection(Connection connection) {
+        if (connection == null) {
+            LOGGER.warn("Attempted to release a null connection.");
+            return; // Do nothing if the connection is null
+        }
+
         try {
             connection.close();
             LOGGER.info(Thread.currentThread().getName() + " released connection: " + connection.getClass());
         } catch (SQLException e) {
             LOGGER.info("Error releasing connection", e);
+        } finally {
+            connections.add(connection);
+            notify();
         }
-        connections.add(connection);
-        notify();
     }
 }
