@@ -26,8 +26,8 @@ public class AppointmentDAOImpl implements AppointmentDAO {
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
 
             ps.setInt(1, appointment.getApptID());
-            ps.setInt(2, appointment.getPatientID());
-            ps.setInt(3, appointment.getDoctorID());
+            ps.setInt(2, appointment.getPatientID().getId());
+            ps.setInt(3, appointment.getDoctorID().getId());
             ps.setString(4, appointment.getApptDate());
             ps.executeUpdate();
 
@@ -42,10 +42,11 @@ public class AppointmentDAOImpl implements AppointmentDAO {
     public Optional<Appointment> findByID(int id) {
         Connection connection = connectionPool.getConnection(1000);
         Appointment appointment = null;
+        ResultSet rs = null;
         String sql = "SELECT id, appt_id, patient_id, doctor_id, appt_date FROM appointments WHERE id = ?";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setInt(1, id);
-            ResultSet rs = ps.executeQuery();
+            rs = ps.executeQuery();
 
             if (rs.next()) {
                 int id1 = rs.getInt("id");
@@ -59,9 +60,14 @@ public class AppointmentDAOImpl implements AppointmentDAO {
         } catch (SQLException e) {
             LOGGER.error("Error finding appointment by ID", e);
         } finally {
-            if (connection != null) {
-                connectionPool.releaseConnection(connection);
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    LOGGER.error("Error closing the result set", e);
+                }
             }
+            connectionPool.releaseConnection(connection);
         }
         return Optional.ofNullable(appointment);
     }
@@ -73,8 +79,8 @@ public class AppointmentDAOImpl implements AppointmentDAO {
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
 
             ps.setInt(1, appointment.getApptID());
-            ps.setInt(2, appointment.getPatientID());
-            ps.setInt(3, appointment.getDoctorID());
+            ps.setInt(2, appointment.getPatientID().getId());
+            ps.setInt(3, appointment.getDoctorID().getId());
             ps.setString(4, appointment.getApptDate());
             ps.executeUpdate();
 

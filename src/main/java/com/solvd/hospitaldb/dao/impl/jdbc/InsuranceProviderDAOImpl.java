@@ -40,10 +40,11 @@ public class InsuranceProviderDAOImpl implements InsuranceProviderDAO {
     public Optional<InsuranceProvider> findByID(int id) {
         Connection connection = connectionPool.getConnection(1000);
         InsuranceProvider provider = null;
+        ResultSet rs = null;
         String sql = "SELECT id, provider_id, provider_name, contact_number, address FROM insurance_providers WHERE id = ?";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setInt(1, id);
-            ResultSet rs = ps.executeQuery();
+            rs = ps.executeQuery();
 
             if (rs.next()) {
                 int id1 = rs.getInt("id");
@@ -57,9 +58,14 @@ public class InsuranceProviderDAOImpl implements InsuranceProviderDAO {
         } catch (SQLException e) {
             LOGGER.error("Error finding insurance provider by ID", e);
         } finally {
-            if (connection != null) {
-                connectionPool.releaseConnection(connection);
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    LOGGER.error("Error closing the result set", e);
+                }
             }
+            connectionPool.releaseConnection(connection);
         }
         return Optional.ofNullable(provider);
     }

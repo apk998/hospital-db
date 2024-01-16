@@ -26,10 +26,10 @@ public class AdmissionDAOImpl implements AdmissionDAO {
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
 
             ps.setInt(1, admission.getAdmitID());
-            ps.setInt(2, admission.getPatientID());
+            ps.setInt(2, admission.getPatientID().getId());
             ps.setString(3, admission.getAdmitDate());
             ps.setString(4, admission.getDischargeDate());
-            ps.setInt(5, admission.getBedID());
+            ps.setInt(5, admission.getBedID().getId());
             ps.executeUpdate();
 
         } catch (SQLException e) {
@@ -43,10 +43,11 @@ public class AdmissionDAOImpl implements AdmissionDAO {
     public Optional<Admission> findByID(int id) {
         Connection connection = connectionPool.getConnection(1000);
         Admission admission = null;
+        ResultSet rs = null;
         String sql = "SELECT id, admission_id, patient_id, admit_date, discharge_date, bed_id FROM admissions WHERE id = ?";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setInt(1, id);
-            ResultSet rs = ps.executeQuery();
+            rs = ps.executeQuery();
 
             if (rs.next()) {
                 int id1 = rs.getInt("id");
@@ -61,9 +62,14 @@ public class AdmissionDAOImpl implements AdmissionDAO {
         } catch (SQLException e) {
             LOGGER.error("Error finding admission by ID", e);
         } finally {
-            if (connection != null) {
-                connectionPool.releaseConnection(connection);
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    LOGGER.error("Error closing the result set", e);
+                }
             }
+            connectionPool.releaseConnection(connection);
         }
         return Optional.ofNullable(admission);
     }
@@ -75,10 +81,10 @@ public class AdmissionDAOImpl implements AdmissionDAO {
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
 
             ps.setInt(1, admission.getAdmitID());
-            ps.setInt(2, admission.getPatientID());
+            ps.setInt(2, admission.getPatientID().getId());
             ps.setString(3, admission.getAdmitDate());
             ps.setString(4, admission.getDischargeDate());
-            ps.setInt(5, admission.getBedID());
+            ps.setInt(5, admission.getBedID().getId());
             ps.executeUpdate();
 
         } catch (SQLException e) {

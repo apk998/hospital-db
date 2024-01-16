@@ -40,10 +40,11 @@ public class MedicationDAOImpl implements MedicationDAO {
     public Optional<Medication> findByID(int id) {
         Connection connection = connectionPool.getConnection(1000);
         Medication medication = null;
+        ResultSet rs = null;
         String sql = "SELECT id, medication_id, medication_name, dosage, usage_instructions FROM medications WHERE id = ?";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setInt(1, id);
-            ResultSet rs = ps.executeQuery();
+            rs = ps.executeQuery();
 
             if (rs.next()) {
                 int id1 = rs.getInt("id");
@@ -57,9 +58,14 @@ public class MedicationDAOImpl implements MedicationDAO {
         } catch (SQLException e) {
             LOGGER.error("Error finding medication by ID", e);
         } finally {
-            if (connection != null) {
-                connectionPool.releaseConnection(connection);
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    LOGGER.error("Error closing the result set", e);
+                }
             }
+            connectionPool.releaseConnection(connection);
         }
         return Optional.ofNullable(medication);
     }

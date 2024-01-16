@@ -39,10 +39,11 @@ public class BedDAOImpl implements BedDAO {
     public Optional<Bed> findByID(int id) {
         Connection connection = connectionPool.getConnection(1000);
         Bed bed = null;
+        ResultSet rs = null;
         String sql = "SELECT id, bed_id, ward_number, availability FROM beds WHERE id = ?";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setInt(1, id);
-            ResultSet rs = ps.executeQuery();
+            rs = ps.executeQuery();
 
             if (rs.next()) {
                 int id1 = rs.getInt("id");
@@ -55,9 +56,14 @@ public class BedDAOImpl implements BedDAO {
         } catch (SQLException e) {
             LOGGER.error("Error finding bed by ID", e);
         } finally {
-            if (connection != null) {
-                connectionPool.releaseConnection(connection);
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    LOGGER.error("Error closing the result set", e);
+                }
             }
+            connectionPool.releaseConnection(connection);
         }
         return Optional.ofNullable(bed);
     }

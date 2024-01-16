@@ -27,8 +27,8 @@ public class InsurancePolicyDAOImpl implements InsurancePolicyDAO {
 
             ps.setInt(1, policy.getPolicyID());
             ps.setString(2, policy.getPolicyName());
-            ps.setInt(3, policy.getPatientID());
-            ps.setInt(4, policy.getProviderID());
+            ps.setInt(3, policy.getPatientID().getId());
+            ps.setInt(4, policy.getProviderID().getId());
             ps.setString(5, policy.getCoverageDetails());
             ps.executeUpdate();
 
@@ -43,10 +43,11 @@ public class InsurancePolicyDAOImpl implements InsurancePolicyDAO {
     public Optional<InsurancePolicy> findByID(int id) {
         Connection connection = connectionPool.getConnection(1000);
         InsurancePolicy policy = null;
+        ResultSet rs = null;
         String sql = "SELECT id, policy_id, policy_name, patient_id, provider_id, coverage_details FROM insurance_policies WHERE id = ?";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setInt(1, id);
-            ResultSet rs = ps.executeQuery();
+            rs = ps.executeQuery();
 
             if (rs.next()) {
                 int id1 = rs.getInt("id");
@@ -61,9 +62,14 @@ public class InsurancePolicyDAOImpl implements InsurancePolicyDAO {
         } catch (SQLException e) {
             LOGGER.error("Error finding insurance policy by ID", e);
         } finally {
-            if (connection != null) {
-                connectionPool.releaseConnection(connection);
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    LOGGER.error("Error closing the result set", e);
+                }
             }
+            connectionPool.releaseConnection(connection);
         }
         return Optional.ofNullable(policy);
     }
@@ -76,8 +82,8 @@ public class InsurancePolicyDAOImpl implements InsurancePolicyDAO {
 
             ps.setInt(1, policy.getPolicyID());
             ps.setString(2, policy.getPolicyName());
-            ps.setInt(3, policy.getPatientID());
-            ps.setInt(4, policy.getProviderID());
+            ps.setInt(3, policy.getPatientID().getId());
+            ps.setInt(4, policy.getProviderID().getId());
             ps.setString(5, policy.getCoverageDetails());
             ps.executeUpdate();
 

@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -46,8 +47,7 @@ public class ConnectionPool {
                 Thread.currentThread().interrupt();
             }
         }
-        Connection connection = connections.remove(0);
-        return connection;
+        return connections.remove(0);
     }
 
     public synchronized void releaseConnection(Connection connection) {
@@ -59,5 +59,15 @@ public class ConnectionPool {
         }
         connections.add(connection);
         notify();
+    }
+
+    public static void closeResultSet(ResultSet resultSet) {
+        try {
+            if (resultSet != null) {
+                resultSet.close();
+            }
+        } catch (SQLException exception) {
+            LOGGER.error("Error closing the result set", exception);
+        }
     }
 }
