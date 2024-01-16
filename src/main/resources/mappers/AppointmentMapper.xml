@@ -11,6 +11,10 @@
         select * from appointments where id = #{id}
     </select>
 
+    <select id="getApptsForPatient" resultMap="AppointmentResultMap" parameterType="java.lang.Integer">
+        select * from appointments where patient_id = #{patientID}
+    </select>
+
     <update id="updateByID">
         update appointments set
         appt_id = #{appointment.apptID},

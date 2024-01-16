@@ -50,7 +50,7 @@ public class DoctorDAOImpl implements DoctorDAO {
 
             if (rs.next()) {
                 int id1 = rs.getInt("id");
-                int doctorID = rs.getInt("doctor_id");
+                Integer doctorID = rs.getInt("doctor_id");
                 String firstName = rs.getString("first_name");
                 String lastName = rs.getString("last_name");
                 Department department = (Department) rs.getObject("department_id");

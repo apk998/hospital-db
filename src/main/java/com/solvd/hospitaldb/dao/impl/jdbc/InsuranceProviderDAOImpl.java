@@ -48,7 +48,7 @@ public class InsuranceProviderDAOImpl implements InsuranceProviderDAO {
 
             if (rs.next()) {
                 int id1 = rs.getInt("id");
-                int providerID = rs.getInt("provider_id");
+                Integer providerID = rs.getInt("provider_id");
                 String providerName = rs.getString("provider_name");
                 String contactNumber = rs.getString("contact_number");
                 String address = rs.getString("address");

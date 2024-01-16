@@ -11,6 +11,10 @@
         select * from patients where id = #{id}
     </select>
 
+    <select id="getAll" resultMap="PatientResultMap">
+        select * from patients
+    </select>
+
     <update id="updateByID">
         update patients set
         patient_id = #{patient.patientID},

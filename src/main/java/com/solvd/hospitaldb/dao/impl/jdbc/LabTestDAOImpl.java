@@ -1,6 +1,7 @@
 package com.solvd.hospitaldb.dao.impl.jdbc;
 
 import com.solvd.hospitaldb.bin.LabTest;
+import com.solvd.hospitaldb.bin.Patient;
 import com.solvd.hospitaldb.dao.LabTestDAO;
 import com.solvd.hospitaldb.util.ConnectionPool;
 import org.apache.logging.log4j.LogManager;

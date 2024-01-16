@@ -50,7 +50,7 @@ public class PatientDAOImpl implements PatientDAO {
 
             if (rs.next()) {
                 int id1 = rs.getInt("id");
-                int patientID = rs.getInt("patient_id");
+                Integer patientID = rs.getInt("patient_id");
                 String firstName = rs.getString("first_name");
                 String lastName = rs.getString("last_name");
                 String dateOfBirth = rs.getString("date_of_birth");
@@ -110,5 +110,37 @@ public class PatientDAOImpl implements PatientDAO {
         } finally {
             connectionPool.releaseConnection(connection);
         }
+    }
+
+    public List<Patient> getAll() {
+        List<Patient> patients = new ArrayList<>();
+        Connection connection = connectionPool.getConnection(1000);
+        ResultSet rs = null;
+        String sql = "SELECT id, patient_id, first_name, last_name, date_of_birth, gender, contact_number FROM patients";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                Integer patientId = rs.getInt("patient_id");
+                String firstName = rs.getString("first_name");
+                String lastName = rs.getString("last_name");
+                String dateOfBirth = rs.getString("date_of_birth");
+                String gender = rs.getString("gender");
+                String contactNumber = rs.getString("contact_number");
+                patients.add(new Patient(id, patientId, firstName, lastName, dateOfBirth, gender, contactNumber));
+            }
+        } catch (SQLException e) {
+            LOGGER.error("Error getting all patients", e);
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    LOGGER.error("Error closing the result set", e);
+                }
+            }
+            connectionPool.releaseConnection(connection);
+        }
+        return patients;
     }
 }

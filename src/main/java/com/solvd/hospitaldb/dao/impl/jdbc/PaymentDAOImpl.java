@@ -1,9 +1,8 @@
 package com.solvd.hospitaldb.dao.impl.jdbc;
 
-import com.solvd.hospitaldb.bin.Appointment;
-import com.solvd.hospitaldb.bin.Doctor;
 import com.solvd.hospitaldb.bin.Patient;
-import com.solvd.hospitaldb.dao.AppointmentDAO;
+import com.solvd.hospitaldb.bin.Payment;
+import com.solvd.hospitaldb.dao.PaymentDAO;
 import com.solvd.hospitaldb.util.ConnectionPool;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -16,51 +15,51 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class AppointmentDAOImpl implements AppointmentDAO {
+public class PaymentDAOImpl implements PaymentDAO {
 
     private final ConnectionPool connectionPool = ConnectionPool.getInstance();
-    private static final Logger LOGGER= LogManager.getLogger(com.solvd.hospitaldb.dao.impl.jdbc.AppointmentDAOImpl.class);
+    private static final Logger LOGGER = LogManager.getLogger(com.solvd.hospitaldb.dao.impl.jdbc.PaymentDAOImpl.class);
 
     @Override
-    public void create(Appointment appointment) {
+    public void create(Payment payment) {
         Connection connection = connectionPool.getConnection(1000);
-        String sql = "INSERT INTO appointments (appt_id, patient_id, doctor_id, appt_date) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO payments (payment_id, patient_id, amount, payment_date) VALUES (?, ?, ?, ?)";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
 
-            ps.setInt(1, appointment.getApptID());
-            ps.setInt(2, appointment.getPatientID().getId());
-            ps.setInt(3, appointment.getDoctorID().getId());
-            ps.setString(4, appointment.getApptDate());
+            ps.setInt(1, payment.getPaymentID());
+            ps.setInt(2, payment.getPatientID().getID());
+            ps.setBigDecimal(3, payment.getAmount());
+            ps.setString(4, payment.getPaymentDate());
             ps.executeUpdate();
 
         } catch (SQLException e) {
-            LOGGER.error("Error creating appointment", e);
+            LOGGER.error("Error creating payment", e);
         } finally {
             connectionPool.releaseConnection(connection);
         }
     }
 
     @Override
-    public Optional<Appointment> findByID(int id) {
+    public Optional<Payment> findByID(int id) {
         Connection connection = connectionPool.getConnection(1000);
-        Appointment appointment = null;
+        Payment payment = null;
         ResultSet rs = null;
-        String sql = "SELECT id, appt_id, patient_id, doctor_id, appt_date FROM appointments WHERE id = ?";
+        String sql = "SELECT id, payment_id, patient_id, amount, payment_date FROM payments WHERE id = ?";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setInt(1, id);
-            rs = ps.executeQuery();
+            rs = ps.executeQuery;
 
             if (rs.next()) {
                 int id1 = rs.getInt("id");
-                Integer apptID = rs.getInt("appt_id");
+                int paymentID = rs.getInt("payment_id");
                 Patient patientID = (Patient) rs.getObject("patient_id");
-                Doctor doctorID = (Doctor) rs.getObject("doctor_id");
-                String apptDate = rs.getString("appt_date");
+                BigDecimal amount = rs.getBigDecimal("amount");
+                String paymentDate = rs.getString("payment_date");
 
-                appointment = new Appointment(id1, apptID, patientID, doctorID, apptDate);
+                payment = new Payment(id1, paymentID, patientID, amount, paymentDate);
             }
         } catch (SQLException e) {
-            LOGGER.error("Error finding appointment by ID", e);
+            LOGGER.error("Error finding payment by ID", e);
         } finally {
             if (rs != null) {
                 try {
@@ -71,73 +70,78 @@ public class AppointmentDAOImpl implements AppointmentDAO {
             }
             connectionPool.releaseConnection(connection);
         }
-        return Optional.ofNullable(appointment);
+        return Optional.ofNullable(payment);
     }
 
     @Override
-    public void updateByID(Appointment appointment, int id) {
+    public void updateByID(Payment payment, int id) {
         Connection connection = connectionPool.getConnection(1000);
-        String sql = "UPDATE appointments SET appt_id = ?, patient_id = ?, doctor_id = ?, appt_date = ? WHERE id = ?";
+        String sql = "UPDATE payments SET payment_id = ?, patient_id = ?, amount = ?, payment_date = ? WHERE id = ?";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
 
-            ps.setInt(1, appointment.getApptID());
-            ps.setInt(2, appointment.getPatientID().getId());
-            ps.setInt(3, appointment.getDoctorID().getId());
-            ps.setString(4, appointment.getApptDate());
+            ps.setInt(1, payment.getPaymentID());
+            ps.setInt(2, payment.getPatientID().getID());
+            ps.setBigDecimal(3, payment.getAmount());
+            ps.setString(4, payment.getPaymentDate());
             ps.executeUpdate();
 
         } catch (SQLException e) {
-            LOGGER.error("Error updating appointment", e);
+            LOGGER.error("Error updating payment", e);
         } finally {
             connectionPool.releaseConnection(connection);
         }
     }
 
     @Override
-    public void deleteByID(Appointment appointment) {
+    public void deleteByID(Payment payment) {
         Connection connection = connectionPool.getConnection(1000);
-        String sql = "DELETE FROM appointments WHERE id = ?";
+        String sql = "DELETE from payments WHERE id = ?";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
 
-            ps.setInt(1, appointment.getId());
+            ps.setInt(1, payment.getId());
             ps.executeUpdate();
 
         } catch (SQLException e) {
-            LOGGER.error("Error deleting appointment", e);
+            LOGGER.error("Error deleting payment", e);
         } finally {
             connectionPool.releaseConnection(connection);
         }
     }
 
     @Override
-    public List<Appointment> getApptsForPatient(Integer patientID) {
-        List<Appointment> appointments = new ArrayList<>();
+    public List<Payment> getPaymentsForPatient(Integer patientID) {
+        List<Payment> payments = new ArrayList<>();
         Connection connection = connectionPool.getConnection(1000);
         ResultSet rs = null;
-        String sql = "SELECT * FROM appointments WHERE patient_id = ?";
+        String sql = "SELECT * from payments WHERE patient_id = ?";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setInt(1, patientID);
             rs = ps.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
-                Integer apptID = rs.getInt("appt_id");
+                int paymentID = rs.getInt("payment_id");
                 Patient patientId = (Patient) rs.getObject("patient_id");
-                Doctor doctorId = (Doctor) rs.getObject("doctor_id");
-                String apptDate = rs.getString("appt_date");
-                appointments.add(new Appointment(id, apptID, patientId, doctorId, apptDate));
+                BigDecimal amount = rs.getBigDecimal("amount");
+                String paymentDate = rs.getString("payment_date");
+                payments.add(new Payment(id, paymentID, patientId, amount, paymentDate));
             }
         } catch (SQLException e) {
-            LOGGER.error("Error getting appointments for patient", e);
+            LOGGER.error("Error getting payments for patient", e);
         } finally {
             if (rs != null) {
                 try {
                     rs.close();
-                } catch (SQLException e) {
+                } catch (SQLException e); {
                     LOGGER.error("Error closing the result set", e);
                 }
             }
             connectionPool.releaseConnection(connection);
         }
-        return appointments;
+        return payments;
+    }
+
+    @Override
+    public double calculateBalance(Patient patient) {
+        return 0;
     }
 }

@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.List;
 import java.util.Optional;
 
 public class AppointmentDAOImpl implements AppointmentDAO {
@@ -74,5 +75,20 @@ public class AppointmentDAOImpl implements AppointmentDAO {
         } finally {
             sqlSession.close();
         }
+    }
+
+    @Override
+    public List<Appointment> getApptsForPatient(Integer patientID) {
+        SqlSession sqlSession = Config.getSessionFactory().openSession(false);
+        List<Appointment> appointments = null;
+        try {
+            appointments = sqlSession.selectList("com.solvd.hospitaldb.dao.AppointmentDAO.getApptsForPatient", patientID);
+        } catch (PersistenceException e) {
+            LOGGER.error("Error getting appointments for patient", e);
+            sqlSession.rollback();
+        } finally {
+            sqlSession.close();
+        }
+        return appointments;
     }
 }
