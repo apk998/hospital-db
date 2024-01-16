@@ -63,7 +63,7 @@ public class Main {
         }
 
         // Billing
-        BigDecimal amount = new BigDecimal(105.00);
+        BigDecimal amount = new BigDecimal("105.00");
         Payment newPayment = new Payment(1, 10383, newPatient, amount, "2024-01-11");
         billingService.processPayment(newPayment);
 
