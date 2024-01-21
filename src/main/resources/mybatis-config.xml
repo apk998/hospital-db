@@ -18,8 +18,16 @@
     </environments>
 
     <mappers>
-        <mapper resource="mappers/PatientMapper.xml"/>
-        <mapper resource="mappers/DoctorMapper.xml"/>
+        <mapper resource="mappers/AdmissionMapper.xml"/>
+        <mapper resource="mappers/AppointmentMapper.xml"/>
+        <mapper resource="mappers/BedMapper.xml"/>
         <mapper resource="mappers/DepartmentMapper.xml"/>
+        <mapper resource="mappers/DoctorMapper.xml"/>
+        <mapper resource="mappers/InsurancePolicyMapper.xml"/>
+        <mapper resource="mappers/InsuranceProviderMapper.xml"/>
+        <mapper resource="mappers/LabTestMapper.xml"/>
+        <mapper resource="mappers/MedicationMapper.xml"/>
+        <mapper resource="mappers/PatientMapper.xml"/>
+        <mapper resource="mappers/PaymentMapper.xml"/>
     </mappers>
 </configuration>
