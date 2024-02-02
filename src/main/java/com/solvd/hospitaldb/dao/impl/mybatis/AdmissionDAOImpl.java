@@ -35,7 +35,7 @@ public class AdmissionDAOImpl implements AdmissionDAO {
         Optional<Admission> optionalAdmission = Optional.empty();
         try {
             AdmissionDAO admissionDAO = sqlSession.getMapper(AdmissionDAO.class);
-            admissionDAO.findByID(id);
+            optionalAdmission = admissionDAO.findByID(id);
             sqlSession.commit();
         } catch (PersistenceException e) {
             LOGGER.error("Error finding admission by ID", e);

@@ -35,7 +35,7 @@ public class BedDAOImpl implements BedDAO {
         Optional<Bed> optionalBed = Optional.empty();
         try {
             BedDAO bedDAO = sqlSession.getMapper(BedDAO.class);
-            bedDAO.findByID(id);
+            optionalBed = bedDAO.findByID(id);
             sqlSession.commit();
         } catch (PersistenceException e) {
             LOGGER.error("Error finding bed by ID", e);

@@ -35,7 +35,7 @@ public class InsurancePolicyImpl implements InsurancePolicyDAO {
         Optional<InsurancePolicy> optionalPolicy = Optional.empty();
         try {
             InsurancePolicyDAO policyDAO = sqlSession.getMapper(InsurancePolicyDAO.class);
-            policyDAO.findByID(id);
+            optionalPolicy = policyDAO.findByID(id);
             sqlSession.commit();
         } catch (PersistenceException e) {
             LOGGER.error("Error finding insurance policy by ID", e);

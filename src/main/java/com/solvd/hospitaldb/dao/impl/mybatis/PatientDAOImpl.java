@@ -36,7 +36,7 @@ public class PatientDAOImpl implements PatientDAO {
         Optional<Patient> optionalPatient = Optional.empty();
         try {
             PatientDAO patientDAO = sqlSession.getMapper(PatientDAO.class);
-            patientDAO.findByID(id);
+            optionalPatient = patientDAO.findByID(id);
             sqlSession.commit();
         } catch (PersistenceException e) {
             LOGGER.error("Error finding patient by ID", e);

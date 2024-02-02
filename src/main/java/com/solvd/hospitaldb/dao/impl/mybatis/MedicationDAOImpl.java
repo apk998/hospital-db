@@ -35,7 +35,7 @@ public class MedicationDAOImpl implements MedicationDAO {
         Optional<Medication> optionalMedication = Optional.empty();
         try {
             MedicationDAO medicationDAO = sqlSession.getMapper(MedicationDAO.class);
-            medicationDAO.findByID(id);
+            optionalMedication = medicationDAO.findByID(id);
             sqlSession.commit();
         } catch (PersistenceException e) {
             LOGGER.error("Error finding medication by ID", e);

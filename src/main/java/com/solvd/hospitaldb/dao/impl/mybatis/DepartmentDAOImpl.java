@@ -35,7 +35,7 @@ public class DepartmentDAOImpl implements DepartmentDAO {
         Optional<Department> optionalDepartment = Optional.empty();
         try {
             DepartmentDAO departmentDAO = sqlSession.getMapper(DepartmentDAO.class);
-            departmentDAO.findByID(id);
+            optionalDepartment = departmentDAO.findByID(id);
             sqlSession.commit();
         } catch (PersistenceException e) {
             LOGGER.error("Error finding department by ID", e);

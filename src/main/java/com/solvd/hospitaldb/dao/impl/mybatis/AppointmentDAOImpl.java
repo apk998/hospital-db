@@ -36,7 +36,7 @@ public class AppointmentDAOImpl implements AppointmentDAO {
         Optional<Appointment> optionalAppointment = Optional.empty();
         try {
             AppointmentDAO appointmentDAO = sqlSession.getMapper(AppointmentDAO.class);
-            appointmentDAO.findByID(id);
+            optionalAppointment = appointmentDAO.findByID(id);
             sqlSession.commit();
         } catch (PersistenceException e) {
             LOGGER.error("Error finding appointment by ID", e);

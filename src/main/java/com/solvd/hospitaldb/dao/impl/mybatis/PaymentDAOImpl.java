@@ -36,7 +36,7 @@ public class PaymentDAOImpl implements PaymentDAO {
         Optional<Payment> optionalPayment = Optional.empty();
         try {
             PaymentDAO paymentDAO = sqlSession.getMapper(PaymentDAO.class);
-            paymentDAO.findByID(id);
+            optionalPayment = paymentDAO.findByID(id);
             sqlSession.commit();
         } catch (PersistenceException e) {
             LOGGER.error("Error finding payment by ID");

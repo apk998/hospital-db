@@ -35,7 +35,7 @@ public class LabTestDAOImpl implements LabTestDAO {
         Optional<LabTest> optionalTest = Optional.empty();
         try {
             LabTestDAO labTestDAO = sqlSession.getMapper(LabTestDAO.class);
-            labTestDAO.findByID(id);
+            optionalTest = labTestDAO.findByID(id);
             sqlSession.commit();
         } catch (PersistenceException e) {
             LOGGER.error("Error finding lab test by ID", e);

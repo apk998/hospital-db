@@ -35,7 +35,7 @@ public class InsuranceProviderImpl implements InsuranceProviderDAO {
         Optional<InsuranceProvider> optionalProvider = Optional.empty();
         try {
             InsuranceProviderDAO providerDAO = sqlSession.getMapper(InsuranceProviderDAO.class);
-            providerDAO.findByID(id);
+            optionalProvider = providerDAO.findByID(id);
             sqlSession.commit();
         } catch (PersistenceException e) {
             LOGGER.error("Error finding insurance provider by ID", e);
