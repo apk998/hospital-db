@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="hospitalservice_suite" verbose="1" parallel="tests" thread-count="10">
+
+    <test name="AppointmentTests">
+        <classes>
+            <class name="com.solvd.hospitaldb.AppointmentTest"/>
+        </classes>
+    </test>
+
+    <test name="BillingTests">
+        <classes>
+            <class name="com.solvd.hospitaldb.BillingTest"/>
+        </classes>
+    </test>
+
+    <test name="PatientTests">
+        <classes>
+            <class name="com.solvd.hospitaldb.PatientTest"/>
+        </classes>
+    </test>
+
+</suite>
